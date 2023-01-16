@@ -1,0 +1,2 @@
+﻿#include "CAbstractAsset.h"
+
