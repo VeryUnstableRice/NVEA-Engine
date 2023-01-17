@@ -43,7 +43,7 @@ public:
 	FCollisionShape GetCollisionShape() const override;
 	bool RayCast(const SVector3f& position, const SVector3f& offset, SVector3f& normal, float& delta) override;
 
-	bool ResolveDynamicSweep(CAABB& box, glm::vec3& velocity, glm::vec3& normal, bool forceNormalUp = false);
+	bool ResolveDynamicSweep(CAABB& box, SVector3f& velocity, SVector3f& normal, bool forceNormalUp = false);
 
 	bool RaySweep(CAABB& box, const SVector3f& offset, SVector3f& normal, float& delta);
 

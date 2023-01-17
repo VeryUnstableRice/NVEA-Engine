@@ -17,7 +17,7 @@ SMatrix4f CCameraEntity::GetView(bool coordZero) const
 	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Yaw),		{ 1, 0, 0 }); //yaw
 	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Roll),		{ 0, 0, 1 }); //roll
 	if(!coordZero)
-		output *= glm::translate(glm::mat4(1), -Transform.Translation);
+		output *= glm::translate(SMatrix4f(1), -Transform.Translation);
 
 	return output;
 }

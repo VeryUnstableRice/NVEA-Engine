@@ -61,7 +61,7 @@ bool CAABB::RayCast(const SVector3f& position, const SVector3f& offset, SVector3
 	return true;
 }
 
-bool CAABB::RaySweep(CAABB& box, const glm::vec3& offset, glm::vec3& normal, float& delta)
+bool CAABB::RaySweep(CAABB& box, const SVector3f& offset, SVector3f& normal, float& delta)
 {
 	struct sizer {
 		CAABB *aabb, *t;
@@ -79,7 +79,7 @@ bool CAABB::RaySweep(CAABB& box, const glm::vec3& offset, glm::vec3& normal, flo
 }
 
 
-bool CAABB::ResolveDynamicSweep(CAABB& box, glm::vec3& velocity, glm::vec3& normal, bool forceNormalUp)
+bool CAABB::ResolveDynamicSweep(CAABB& box, SVector3f& velocity, SVector3f& normal, bool forceNormalUp)
 {
 	float delta;
 	if (RaySweep(box, velocity, normal, delta))

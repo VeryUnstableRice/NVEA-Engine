@@ -18,20 +18,21 @@ void CTestPlayerPuppet::ManageCamera(double DeltaTime)
     GetPlayer()->SetMouseFree(false);
     glm::vec2 mousepos = manager.GetMouseRelative();
 
-    STransform cameraTransform = m_cameraEntity->GetTransformComponent()->GetLocalTransform();
     //m_yaw += mousepos.y;
-    m_pitch   +=    (double)mousepos.x*+DeltaTime*100.0;
-    m_yaw       +=  (double)mousepos.y*+DeltaTime*100.0;
+    m_pitch +=    mousepos.x*+DeltaTime*100.0;
+    m_yaw   +=  mousepos.y*+DeltaTime*100.0;
 
+    SEulerRotator player_rot;
+    STransform Transform = GetTransformComponent()->GetLocalTransform();
+    player_rot.Pitch = m_pitch;
+    Transform.Rotation = ToQuaternions(player_rot);
+    GetTransformComponent()->SetLocalTransform(Transform);
+    
+    STransform cameraTransform = m_cameraEntity->GetTransformComponent()->GetLocalTransform();
     SEulerRotator rotator;
     rotator.Yaw = m_yaw;
-    rotator.Pitch = m_pitch;
     cameraTransform.Rotation = ToQuaternions(rotator);
     m_cameraEntity->GetTransformComponent()->SetLocalTransform(cameraTransform);
-    SEulerRotator temp = ToEuler(cameraTransform.Rotation);
-    CEngine::Engine->PrintLog(
-        std::to_string(rotator.Yaw) + " " + std::to_string(rotator.Pitch) + " " +
-        std::to_string(temp.Yaw) + " " + std::to_string(temp.Pitch), NORMAL);
 }
 
 void CTestPlayerPuppet::OnConstruct()
