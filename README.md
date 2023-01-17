@@ -14,7 +14,7 @@ Right now it's just a hobby project. But if it's features get solid, then I will
 Current TODO List:
  - [x] Make a proper transform system
  - [x] Create entity system
- - [x] Make the bases for Garbage collector
+ - [x] Make a basic Garbage Collector
  - [ ] GUI Lib
  - [ ] Document code
  - [ ] Audio
