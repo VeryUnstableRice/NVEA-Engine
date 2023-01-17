@@ -7,8 +7,11 @@ class CTestPlayerPuppet : public CPuppetEntity
 
     CObjectPtr<class CCameraEntity> m_cameraEntity;
 
-    double m_yaw;
-    
+    double m_yaw, m_pitch;
+    CWeakObjectPtr<class CBoundInput> m_forward;
+    CWeakObjectPtr<class CBoundInput> m_backward;
+    CWeakObjectPtr<class CBoundInput> m_left;
+    CWeakObjectPtr<class CBoundInput> m_right;
     void ManageCamera(double DeltaTime);
 public:
     void OnConstruct() override;

@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/ext/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
+#include <SDL2/SDL_stdinc.h>
 
 #include "CEntityComponent.h"
 
@@ -13,19 +14,89 @@ typedef glm::vec4 SVector4f;
 typedef glm::mat4 SMatrix4f;
 typedef glm::mat4 SMatrix3f;
 
-struct SEulerRotation
+struct SEulerRotator
 {
     double Yaw;
     double Pitch;
     double Roll;
-    SEulerRotation(double Yaw = 0, double Pitch = 0, double Roll = 0) : Yaw(Yaw), Pitch(Pitch), Roll(Roll) {}
+    SEulerRotator(double Yaw = 0, double Pitch = 0, double Roll = 0) : Yaw(Yaw), Pitch(Pitch), Roll(Roll) {}
 };
+
+using SQuaternionRotator = glm::quat;
+
+inline SEulerRotator ToEuler(const SQuaternionRotator& Quat)
+{
+    SEulerRotator rotator;
+    SQuaternionRotator q = glm::normalize(Quat);
+    // roll (x-axis rotation)
+    double sinr_cosp = 2.0 * (q.w * q.x + q.y * q.z);
+    double cosr_cosp = 1.0 - 2.0 * (q.x * q.x + q.y * q.y);
+    rotator.Yaw = std::atan2(sinr_cosp, cosr_cosp) * 180.0/M_PI;
+
+    // pitch (y-axis rotation)
+    double sinp = std::sqrt(1.0 + 2.0 * (q.w * q.y - q.x * q.z));
+    double cosp = std::sqrt(1.0 - 2.0 * (q.w * q.y - q.x * q.z));
+    rotator.Pitch =( 2.0 * std::atan2(sinp, cosp) - M_PI / 2.0)* 180.0/M_PI;
+
+    // yaw (z-axis rotation)
+    double siny_cosp = 2.0 * (q.w * q.z + q.x * q.y);
+    double cosy_cosp = 1.0 - 2.0 * (q.y * q.y + q.z * q.z);
+    rotator.Roll = std::atan2(siny_cosp, cosy_cosp)* 180.0/M_PI;
+
+    return rotator;
+}
+
+inline SQuaternionRotator ToQuaternions(const SEulerRotator& euler)
+{
+    SQuaternionRotator quat;
+    double yawRad      = euler.Yaw     * M_PI / 180.0;
+    double pitchRad     = euler.Pitch    * M_PI / 180.0;
+    double rollRad       = euler.Roll      * M_PI / 180.0;
+
+    double yawCos = std::cos(yawRad*0.5);
+    double yawSin = std::sin(yawRad*0.5);
+
+    double pitchCos = std::cos(pitchRad*0.5);
+    double pitchSin = std::sin(pitchRad*0.5);
+
+    double rollCos = std::cos(rollRad*0.5);
+    double rollSin = std::sin(rollRad*0.5);
+    
+    quat.w = yawCos * pitchCos * rollCos + yawSin * pitchSin * rollSin;
+    quat.x = yawSin * pitchCos * rollCos - yawCos * pitchSin * rollSin;
+    quat.y = yawCos * pitchSin * rollCos + yawSin * pitchCos * rollSin;
+    quat.z = yawCos * pitchCos * rollSin - yawSin * pitchSin * rollCos;
+    return quat;
+}
+
+inline SMatrix4f QuatToMatrix(const SQuaternionRotator& quat)
+{
+    SMatrix4f R(1);
+    double w = quat.w;
+    double x = quat.x;
+    double y = quat.y;
+    double z = quat.z;
+    
+    R[0][0] = 1 - 2*y*y - 2*z*z;
+    R[0][1] = 2*x*y - 2*w*z;
+    R[0][2] = 2*x*z + 2*w*y;
+
+    R[1][0] = 2*x*y + 2*w*z;
+    R[1][1] = 1 - 2*x*x - 2*z*z;
+    R[1][2] = 2*y*z - 2*w*x;
+
+    R[2][0] = 2*x*z - 2*w*y;
+    R[2][1] = 2*y*z + 2*w*x;
+    R[2][2] = 1 - 2*x*x - 2*y*y;
+
+    return R;
+}
 
 struct STransform
 {
-    SVector3f       Translation;
-    SEulerRotation  Rotation;
-    SVector3f       Scale;
+    SVector3f           Translation;
+    SQuaternionRotator  Rotation;
+    SVector3f           Scale;
 
     SMatrix4f TransformMatrix(const SVector3f& ViewOrigin = SVector3f(0)) const
     {
@@ -35,15 +106,10 @@ struct STransform
 
     SMatrix3f GetRotationMatrix() const
     {
-        SMatrix3f rotation = SMatrix3f(1);
-        rotation *= glm::rotate(SMatrix3f(1), glm::radians((float)Rotation.Pitch)  , { 1, 0, 0 }); //pitch
-        rotation *= glm::rotate(SMatrix3f(1), glm::radians((float)Rotation.Yaw)    , { 0, 1, 0 }); //yaw
-        rotation *= glm::rotate(SMatrix3f(1), glm::radians((float)Rotation.Roll)   , { 0, 0, 1 }); //roll
-
-        return rotation;
+        return glm::mat4_cast(Rotation);
     }
 
-    STransform(const SVector3f& translation = SVector3f(0), const SEulerRotation& rotation=SEulerRotation(0), const SVector3f& scale=SVector3f(1)) : Translation(translation), Rotation(rotation), Scale(scale)
+    STransform(const SVector3f& translation = SVector3f(0), const SQuaternionRotator& rotation=SQuaternionRotator(), const SVector3f& scale=SVector3f(1)) : Translation(translation), Rotation(rotation), Scale(scale)
     {
         
     }
@@ -53,31 +119,15 @@ struct STransform
         *this = matrix;
     }
 
-    std::string to_string()
-    {
-        std::string output = "";
-        output += "[" + std::to_string(Translation.x) + " " + std::to_string(Translation.y) + " " + std::to_string(Translation.z) + "] ";
-        output += "[" + std::to_string(Rotation.Yaw) + " " + std::to_string(Rotation.Pitch) + " " + std::to_string(Rotation.Roll) + "] ";
-        output += "[" + std::to_string(Scale.x) + " " + std::to_string(Scale.y) + " " + std::to_string(Scale.z) + "]";
-        return output;
-    }
-
     STransform& operator=(const glm::mat4& matrix)
     {
         Scale.x = glm::length(matrix[0]);
         Scale.y = glm::length(matrix[1]);
         Scale.z = glm::length(matrix[2]);
-
-        glm::mat3 RotationMatrix(matrix);
-        SVector3f tempRot = glm::eulerAngles(glm::normalize(glm::quat_cast(RotationMatrix)));
-        Rotation.Yaw    = glm::degrees(tempRot.y);
-        Rotation.Pitch  = glm::degrees(tempRot.x);
-        Rotation.Pitch  = glm::degrees(tempRot.z);
         
-        Translation.x = matrix[3][0];
-        Translation.y = matrix[3][1];
-        Translation.z = matrix[3][2];
+        Rotation = glm::quat_cast(glm::mat3(matrix));
 
+        Translation = matrix[3];
         return *this;
     }
 };

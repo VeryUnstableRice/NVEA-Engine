@@ -26,6 +26,7 @@ const STransform& CEntityTransformComponent::GetLocalTransform() const
 
 STransform CEntityTransformComponent::GetWorldTransform() const
 {
+    //return GetTransformMatrix();
     if(GetOwner()->GetEntityParent())
         return GetTransformMatrix();
     return m_transform;

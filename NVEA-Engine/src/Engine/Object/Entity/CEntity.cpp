@@ -34,12 +34,6 @@ void CEntity::DeattachFromParent()
     m_parent = nullptr;
 }
 
-void CEntity::PrintLocation()
-{
-    std::string str = GetTransformComponent()->GetWorldTransform().to_string();
-    CAbstractEngine::Engine->PrintLog(GetObjectName() + str, NORMAL);
-}
-
 bool CEntity::IsPlayerOwned()
 {
     if(m_parent && m_parent->IsPlayerOwned()) return true;

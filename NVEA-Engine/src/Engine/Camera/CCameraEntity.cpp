@@ -7,12 +7,15 @@
 
 SMatrix4f CCameraEntity::GetView(bool coordZero) const
 {
-	const STransform Transform = GetTransformComponent()->GetLocalTransform();
+	CEntityTransformComponent* component = GetTransformComponent();
+	
+	const STransform Transform = component->GetWorldTransform();
 
-	glm::mat4 output = glm::mat4(1);
-	output *= glm::rotate(glm::mat4(1), glm::radians(-(float)Transform.Rotation.Pitch), { 1, 0, 0 }); //pitch
-	output *= glm::rotate(glm::mat4(1), glm::radians(-(float)Transform.Rotation.Yaw), { 0, 1, 0 }); //yaw
-	output *= glm::rotate(glm::mat4(1), glm::radians(-(float)Transform.Rotation.Roll), { 0, 0, 1 }); //roll
+	glm::mat4 output = glm::inverse(QuatToMatrix(Transform.Rotation));
+	//SEulerRotator rotator = ToEuler(Transform.Rotation);
+	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Pitch),		{ 0, 1, 0 }); //pitch
+	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Yaw),		{ 1, 0, 0 }); //yaw
+	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Roll),		{ 0, 0, 1 }); //roll
 	if(!coordZero)
 		output *= glm::translate(glm::mat4(1), -Transform.Translation);
 

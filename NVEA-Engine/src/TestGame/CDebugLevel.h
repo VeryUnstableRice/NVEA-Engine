@@ -8,11 +8,6 @@
 
 class CDebugLevel : public CLevel
 {
-    CWeakObjectPtr<class CBoundInput> m_forward;
-    CWeakObjectPtr<class CBoundInput> m_backward;
-    CWeakObjectPtr<class CBoundInput> m_left;
-    CWeakObjectPtr<class CBoundInput> m_right;
-
     CObjectPtr<CStaticMesh> m_testMesh;
     CObjectPtr<CMeshRenderEntity> m_renderTestMesh;
     CObjectPtr<CTestObject> m_testTickObject;

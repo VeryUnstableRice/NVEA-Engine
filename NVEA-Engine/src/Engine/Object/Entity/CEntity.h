@@ -37,8 +37,6 @@ public:
     void SetLevel(class CLevel* level);
     void Destroy();
 
-    void PrintLocation();
-
     virtual bool IsPlayerOwned();
     
     void OnConstruct() override;
