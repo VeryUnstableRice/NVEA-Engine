@@ -9,12 +9,13 @@
 #include "RenderPipeline/CRenderPipeline.h"
 
 
-enum ELogVerbosity : std::uint16_t
+enum ELogVerbosity : std::uint64_t
 {
-	NORMAL = 1 << 0,
-	GARBAGE_COLLECTOR = 1 << 1,
-	GAME_INSTANCE = 1 << 2,
-	GL_LOG = 1 << 3,
+	NORMAL				= 1 << 0,
+	GARBAGE_COLLECTOR	= 1 << 1,
+	GAME_INSTANCE		= 1 << 2,
+	GL_LOG				= 1 << 3,
+	ENGINE_LOADING		= 1 << 4
 };
 
 /*

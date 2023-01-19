@@ -69,25 +69,34 @@ inline SQuaternionRotator ToQuaternions(const SEulerRotator& euler)
     return quat;
 }
 
-inline SMatrix4f QuatToMatrix(const SQuaternionRotator& quat)
+inline SMatrix4f QuatToMatrix(const SQuaternionRotator& quat, char flags = 0b111)
 {
     SMatrix4f R(1);
     float w = quat.w;
     float x = quat.x;
     float y = quat.y;
     float z = quat.z;
-    
-    R[0][0] = 1 - 2*y*y - 2*z*z;
-    R[0][1] = 2*x*y - 2*w*z;
-    R[0][2] = 2*x*z + 2*w*y;
 
-    R[1][0] = 2*x*y + 2*w*z;
-    R[1][1] = 1 - 2*x*x - 2*z*z;
-    R[1][2] = 2*y*z - 2*w*x;
+    if(flags & 0b1)
+    {
+        R[0][0] = 1 - 2*y*y - 2*z*z;
+        R[0][1] = 2*x*y - 2*w*z;
+        R[0][2] = 2*x*z + 2*w*y;
+    }
 
-    R[2][0] = 2*x*z - 2*w*y;
-    R[2][1] = 2*y*z + 2*w*x;
-    R[2][2] = 1 - 2*x*x - 2*y*y;
+    if(flags & 0b10)
+    {
+        R[1][0] = 2*x*y + 2*w*z;
+        R[1][1] = 1 - 2*x*x - 2*z*z;
+        R[1][2] = 2*y*z - 2*w*x;
+    }
+
+    if(flags & 0b100)
+    {
+        R[2][0] = 2*x*z - 2*w*y;
+        R[2][1] = 2*y*z + 2*w*x;
+        R[2][2] = 1 - 2*x*x - 2*y*y;
+    }
 
     return R;
 }
@@ -104,9 +113,9 @@ struct STransform
         return transform * GetRotationMatrix() * glm::scale(SMatrix4f(1), Scale);
     }
 
-    SMatrix4f GetRotationMatrix() const
+    SMatrix4f GetRotationMatrix(char flags = 0b111) const
     {
-        return glm::mat4_cast(Rotation);
+        return QuatToMatrix(Rotation, flags);
     }
 
     STransform(const SVector3f& translation = SVector3f(0), const SQuaternionRotator& rotation=SQuaternionRotator(), const SVector3f& scale=SVector3f(1)) :

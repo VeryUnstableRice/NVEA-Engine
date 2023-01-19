@@ -623,6 +623,8 @@
     </ClCompile>
     <ClCompile Include="src\Engine\RenderPipeline\CRenderPipeline.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\SoundModule\Asset\CSoundAsset.cpp" />
+    <ClCompile Include="src\SoundModule\CEngineSoundModule.cpp" />
     <ClCompile Include="src\TestGame\CDebugLevel.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -744,6 +746,8 @@
     <ClInclude Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.h" />
     <ClInclude Include="src\Engine\RenderPipeline\CMeshRenderEntity.h" />
     <ClInclude Include="src\Engine\RenderPipeline\CRenderPipeline.h" />
+    <ClInclude Include="src\SoundModule\Asset\CSoundAsset.h" />
+    <ClInclude Include="src\SoundModule\CEngineSoundModule.h" />
     <ClInclude Include="src\TestGame\CDebugLevel.h" />
     <ClInclude Include="src\TestGame\CTestGameInstance.h" />
     <ClInclude Include="src\TestGame\CTestObject.h" />

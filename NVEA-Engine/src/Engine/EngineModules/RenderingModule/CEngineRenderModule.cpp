@@ -8,13 +8,19 @@ void CEngineRenderModule::Tick(double DeltaTime)
     m_renderPipeline->Render();
 }
 
-void CEngineRenderModule::Load()
+bool CEngineRenderModule::Load()
 {
     m_renderPipeline = CreateObject<CRenderPipeline>();
+    return m_renderPipeline;
 }
 
 void CEngineRenderModule::Unload()
 {
+}
+
+std::string CEngineRenderModule::ModuleName()
+{
+    return "Render Module";
 }
 
 CRenderPipeline* CEngineRenderModule::GetRenderPipeline()

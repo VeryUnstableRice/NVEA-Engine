@@ -42,17 +42,17 @@ SMatrix4f CEntityTransformComponent::GetTransformMatrix(const SVector3f& ViewOri
     return CurrentMatrix;
 }
 
-SVector3f CEntityTransformComponent::GetForwardVector() const
-{
-    return -normalize(GetLocalTransform().GetRotationMatrix()[2]);
-}
-
 SVector3f CEntityTransformComponent::GetRightVector() const
 {
-    return normalize(GetLocalTransform().GetRotationMatrix()[0]);
+    return glm::normalize(GetLocalTransform().GetRotationMatrix(0b1)[0]);
 }
 
 SVector3f CEntityTransformComponent::GetUpVector() const
 {
-    return glm::normalize(GetLocalTransform().GetRotationMatrix()[1]);
+    return glm::normalize(GetLocalTransform().GetRotationMatrix(0b10)[1]);
+}
+
+SVector3f CEntityTransformComponent::GetForwardVector() const
+{
+    return -glm::normalize(GetLocalTransform().GetRotationMatrix(0b100)[2]);
 }

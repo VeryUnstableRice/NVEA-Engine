@@ -101,7 +101,10 @@ void CAbstractEngine::LoadEngine()
 	m_inputManager = CreateObject<CInputManager>();
 	m_assetManager = CreateObject<CAssetManager>();
 	for(IEngineModuleInterface* module : m_engineModules)
-		module->Load();
+	{
+		std::string Result = module->Load() ? "has been loaded successfully" : "has failed to load";
+		PrintLog(module->ModuleName() + " " + Result, ELogVerbosity::ENGINE_LOADING);
+	}
 }
 
 void CAbstractEngine::UnloadEngine()

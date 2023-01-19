@@ -8,8 +8,9 @@ class CEngineRenderModule : public IEngineModuleInterface
     CObjectPtr<CRenderPipeline> m_renderPipeline;
 public:
     void Tick(double DeltaTime) override;
-    void Load() override;
+    bool Load() override;
     void Unload() override;
+    std::string ModuleName() override;
 
     CRenderPipeline* GetRenderPipeline();
 };

@@ -11,7 +11,7 @@ SMatrix4f CCameraEntity::GetView(bool coordZero) const
 	
 	const STransform Transform = component->GetWorldTransform();
 
-	glm::mat4 output = glm::inverse(QuatToMatrix(Transform.Rotation));
+	glm::mat4 output = QuatToMatrix(Transform.Rotation);
 	//SEulerRotator rotator = ToEuler(Transform.Rotation);
 	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Pitch),		{ 0, 1, 0 }); //pitch
 	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Yaw),		{ 1, 0, 0 }); //yaw

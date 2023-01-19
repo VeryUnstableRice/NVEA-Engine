@@ -18,8 +18,7 @@ void CTestPlayerPuppet::ManageCamera(double DeltaTime)
     GetPlayer()->SetMouseFree(false);
     glm::vec2 mousepos = manager.GetMouseRelative();
 
-    //m_yaw += mousepos.y;
-    m_pitch +=    mousepos.x*+DeltaTime*100.0;
+    m_pitch +=  mousepos.x*+DeltaTime*100.0;
     m_yaw   +=  mousepos.y*+DeltaTime*100.0;
 
     SEulerRotator player_rot;
@@ -64,8 +63,11 @@ void CTestPlayerPuppet::PhysicsTick(double PhysicsDeltaTime)
     double right = m_right->CheckButtons(EButtonEvent::Down) -  m_left->CheckButtons(EButtonEvent::Down);
 
     CEntityTransformComponent* transform_component = GetTransformComponent();
-    SVector3f forward_vec = transform_component->GetForwardVector() * (float)forward;
-    SVector3f right_vec = transform_component->GetRightVector() * (float)right;
+    SVector3f forward_vec   = transform_component->GetForwardVector() * (float)forward;
+    SVector3f right_vec     = transform_component->GetRightVector() * (float)right;
+
+    STransform Transform = GetTransformComponent()->GetLocalTransform();
+    //CEngine::Engine->PrintLog(std::to_string(ToEuler(Transform.Rotation).Pitch), NORMAL);
 
     GetTransformComponent()->Move((forward_vec+right_vec)*(float)PhysicsDeltaTime*25.f);
 }
