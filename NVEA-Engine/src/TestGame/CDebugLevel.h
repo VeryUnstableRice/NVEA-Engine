@@ -5,12 +5,14 @@
 #include "Engine/CLevel.h"
 #include "Engine/Mesh/CStaticMesh.h"
 #include "Engine/Object/CObject.h"
+#include "SoundModule/CSoundEntity.h"
 
 class CDebugLevel : public CLevel
 {
     CObjectPtr<CStaticMesh> m_testMesh;
     CObjectPtr<CMeshRenderEntity> m_renderTestMesh;
     CObjectPtr<CTestObject> m_testTickObject;
+    CObjectPtr<CSoundEntity> m_soundEntity;
     CObjectPtr<CTestPlayerPuppet> m_playerPuppet;
 public:
     void LevelTick(double DeltaTime) override;

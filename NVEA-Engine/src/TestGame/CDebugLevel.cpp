@@ -3,13 +3,18 @@
 #include <iostream>
 
 #include "CTestGameInstance.h"
+#include "Engine/CEngine.h"
 #include "Engine/InputManager/CBoundInput.h"
 #include "Engine/Object/Puppet/CPlayer.h"
 #include "Engine/RenderPipeline/CMeshRenderEntity.h"
+#include "SoundModule/CSoundEntity.h"
 
 void CDebugLevel::LevelTick(double DeltaTime)
 {
-
+    if(CEngine::Engine->GetInputManager().KeyStatus(SDL_SCANCODE_0, EButtonEvent::Released))
+    {
+        m_soundEntity->PlaySound();
+    }
 }
 
 void CDebugLevel::LevelPhysicsTick(double DeltaTime)
@@ -85,6 +90,9 @@ void CDebugLevel::OnLevelChanged()
     m_renderTestMesh = SpawnEntity<CMeshRenderEntity>();
     m_renderTestMesh->SetMesh(m_testMesh);
     m_renderTestMesh->SetShader(CTestGameInstance::Instance->DefaultShader);
+
+    m_soundEntity = SpawnEntity<CSoundEntity>();
+    m_soundEntity->SetSound(CTestGameInstance::Instance->TestSound);
 }
 
 void CDebugLevel::OnUnloadedLevel()

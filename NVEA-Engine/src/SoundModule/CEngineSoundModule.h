@@ -2,15 +2,15 @@
 #define CEngineSoundModule_Header
 #include "Engine/IEngineModuleInterface.h"
 
+//TODO: reimplement all of this with OpenAL, SDL is doing a decent job but openal is doing the best job
+
 class CEngineSoundModule : public IEngineModuleInterface
 {
 public:
-    virtual void Tick(double DeltaTime) = 0;
-    virtual bool Load() = 0;
-    virtual void Unload() = 0;
+    void Tick(double DeltaTime) override;
+    bool Load() override;
+    void Unload() override;
     std::string ModuleName() override;
-
-    
 };
 
 #endif

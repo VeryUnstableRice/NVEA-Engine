@@ -8,6 +8,7 @@ class CTestGameInstance : public CAbstractGame
     virtual void GamePhysicsTick(double DeltaTime) const override;
 public:
     class CShader* DefaultShader;
+    class CSound* TestSound = nullptr;
     
     void InitializeAssets() override;
     void UninitiazeGameInstance() override;

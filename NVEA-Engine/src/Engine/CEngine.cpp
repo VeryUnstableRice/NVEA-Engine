@@ -14,6 +14,7 @@ CEngine::~CEngine()
 void CEngine::LoadEngine()
 {
     m_engineModules.push_back(m_renderModule = new CEngineRenderModule());
+    m_engineModules.push_back(m_soundModule = new CEngineSoundModule());
     CAbstractEngine::LoadEngine();
 }
 
