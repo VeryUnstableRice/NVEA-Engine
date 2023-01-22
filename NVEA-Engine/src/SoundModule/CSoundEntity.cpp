@@ -4,16 +4,24 @@
 
 void CSoundEntity::SetSound(CSound* sound)
 {
-    if(m_sound)
-        SDL_CloseAudioDevice(m_deviceID);
-    if(m_sound = sound)
-        m_deviceID = SDL_OpenAudioDevice(nullptr, 0, &sound->m_wavSpec, nullptr, 0);
+    if(m_sound == sound) return;
+    if(m_sound) alDeleteSources(1, &m_source);
+    m_sound = sound;
+    if(!m_sound) return;
+    alGenSources(1, &m_source);
+    alSourcei(m_source, AL_BUFFER, m_sound->m_buffer);
+
+    m_init = true;
 }
 
 void CSoundEntity::PlaySound()
 {
-    if(!m_sound || IsPlaying()) return;
+    if(!m_init || !m_sound || IsPlaying()) return;
+    alSourcePlay(m_source);
+}
 
-    SDL_QueueAudio(m_deviceID, m_sound->m_wavBuffer, m_sound->m_wavLength);
-    SDL_PauseAudioDevice(m_deviceID, 0);
+void CSoundEntity::OnDestroy()
+{
+    CEntity::OnDestroy();
+    SetSound(nullptr);
 }

@@ -1,20 +1,24 @@
 #ifndef CSound_Header
 #define CSound_Header
-#include <SDL2/SDL_audio.h>
-
 #include "Engine/Object/CObject.h"
+#include <SDL2/SDL_audio.h>
+#include <al.h>
+#include <alc.h>
+#include <vector>
 
 class CSound : public CObject
 {
-    SDL_AudioSpec m_wavSpec;
-    Uint32 m_wavLength;
-    Uint8* m_wavBuffer;
-
     bool m_isInit = false;
-
+    ALuint m_buffer;
+    int m_channel;
+    int m_sample_rate;
+    int m_beats_per_second;
+    
     void FreeBuffers();
 
     friend class CSoundEntity;
+
+    std::vector<char> LoadWAV(const std::string& filePath, int& channel, int& sample_rate, int& beats_per_second);
 public:
     void Init(const std::string& filePath);
 
