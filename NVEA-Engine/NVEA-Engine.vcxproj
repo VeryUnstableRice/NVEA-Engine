@@ -145,6 +145,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="glad\glad.c" />
+    <ClCompile Include="src\EngineModules\GUIModule\CGUICanvas.cpp" />
+    <ClCompile Include="src\EngineModules\GUIModule\CGUIEngineModule.cpp" />
+    <ClCompile Include="src\EngineModules\SoundModule\Asset\CSoundAsset.cpp" />
+    <ClCompile Include="src\EngineModules\SoundModule\CEngineSoundModule.cpp" />
+    <ClCompile Include="src\EngineModules\SoundModule\CSound.cpp" />
+    <ClCompile Include="src\EngineModules\SoundModule\CSoundEntity.cpp" />
     <ClCompile Include="src\Engine\AssetManager\Asset\CAbstractAsset.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -623,83 +629,6 @@
     </ClCompile>
     <ClCompile Include="src\Engine\RenderPipeline\CRenderPipeline.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\SoundModule\Asset\CSoundAsset.cpp" />
-    <ClCompile Include="src\SoundModule\CEngineSoundModule.cpp" />
-    <ClCompile Include="src\SoundModule\CSound.cpp" />
-    <ClCompile Include="src\SoundModule\CSoundEntity.cpp">
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>x64\Release\</BrowseInformationFile>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>true</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
-      <ModuleOutputFile>x64\Release\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <Optimization>MaxSpeed</Optimization>
-      <ObjectFileName>x64\Release\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>x64\Release\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>x64\Release\NVEA-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>x64\Release\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <TrackerLogDirectory>x64\Release\NVEA-Engine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>x64\Release\</XMLDocumentationFileName>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <SDLCheck>true</SDLCheck>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
     <ClCompile Include="src\TestGame\CDebugLevel.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -780,6 +709,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glad\glad.h" />
+    <ClInclude Include="src\EngineModules\GUIModule\CGUICanvas.h" />
+    <ClInclude Include="src\EngineModules\GUIModule\CGUIEngineModule.h" />
+    <ClInclude Include="src\EngineModules\SoundModule\Asset\CSoundAsset.h" />
+    <ClInclude Include="src\EngineModules\SoundModule\CEngineSoundModule.h" />
+    <ClInclude Include="src\EngineModules\SoundModule\CSound.h" />
+    <ClInclude Include="src\EngineModules\SoundModule\CSoundEntity.h" />
     <ClInclude Include="src\Engine\AssetManager\Asset\CAbstractAsset.h" />
     <ClInclude Include="src\Engine\AssetManager\Asset\CShaderAsset.h" />
     <ClInclude Include="src\Engine\CAbstractGame.h" />
@@ -821,10 +756,6 @@
     <ClInclude Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.h" />
     <ClInclude Include="src\Engine\RenderPipeline\CMeshRenderEntity.h" />
     <ClInclude Include="src\Engine\RenderPipeline\CRenderPipeline.h" />
-    <ClInclude Include="src\SoundModule\Asset\CSoundAsset.h" />
-    <ClInclude Include="src\SoundModule\CEngineSoundModule.h" />
-    <ClInclude Include="src\SoundModule\CSound.h" />
-    <ClInclude Include="src\SoundModule\CSoundEntity.h" />
     <ClInclude Include="src\TestGame\CDebugLevel.h" />
     <ClInclude Include="src\TestGame\CTestGameInstance.h" />
     <ClInclude Include="src\TestGame\CTestObject.h" />

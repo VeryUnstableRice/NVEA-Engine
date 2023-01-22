@@ -11,7 +11,7 @@ class CSound : public CObject
     bool m_isInit = false;
     ALuint m_buffer;
     int m_channel;
-    int m_sample_rate;
+    ALsizei m_sample_rate;
     int m_beats_per_second;
     
     void FreeBuffers();

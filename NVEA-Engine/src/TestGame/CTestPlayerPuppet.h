@@ -7,7 +7,7 @@ class CTestPlayerPuppet : public CPuppetEntity
 
     CObjectPtr<class CCameraEntity> m_cameraEntity;
 
-    double m_yaw, m_pitch;
+    float m_yaw, m_pitch;
     CWeakObjectPtr<class CBoundInput> m_forward;
     CWeakObjectPtr<class CBoundInput> m_backward;
     CWeakObjectPtr<class CBoundInput> m_left;

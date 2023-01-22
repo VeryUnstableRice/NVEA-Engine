@@ -10,6 +10,7 @@
 #include "CEntityComponent.h"
 
 typedef glm::vec3 SVector3f;
+typedef glm::vec2 SVector2f;
 typedef glm::vec4 SVector4f;
 typedef glm::mat4 SMatrix4f;
 typedef glm::mat3 SMatrix3f;

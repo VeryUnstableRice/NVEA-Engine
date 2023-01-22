@@ -5,7 +5,7 @@
 #include "Engine/CLevel.h"
 #include "Engine/Mesh/CStaticMesh.h"
 #include "Engine/Object/CObject.h"
-#include "SoundModule/CSoundEntity.h"
+#include "EngineModules/SoundModule/CSoundEntity.h"
 
 class CDebugLevel : public CLevel
 {

@@ -1,7 +1,7 @@
 #ifndef CSoundAsset_Header
 #define CSoundAsset_Header
 #include "Engine/AssetManager/Asset/CAbstractAsset.h"
-#include "SoundModule/CSound.h"
+#include "EngineModules/SoundModule/CSound.h"
 
 class CSoundAsset : public CTemplateAsset<CSound>
 {

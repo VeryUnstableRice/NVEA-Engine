@@ -20,6 +20,13 @@ enum ELogVerbosity : std::uint64_t
 
 /*
 Handles engine specifics, and levels
+
+TODO: -extract the render module from the engine's "kernel"
+
+MODULE AND GAME DO AND DON'Ts:
+-The engine may be edited to fit functionality for the game, but it should never have any non virtual references about the modules
+-Modules shall call game code
+-Game shall never call any other code than itself, in the future once a proper high level is set up this should not even be a problem
 */
 class CAbstractEngine : public CObject
 {
@@ -76,6 +83,8 @@ public:
 	void PrintLog(const std::string& log, ELogVerbosity Verbosity);
 
 	void CheckForGLErrors();
+
+	const std::vector<IEngineModuleInterface*>& GetEngineModules() const {return m_engineModules; }
 	
 	static CAbstractEngine* Engine;
 };

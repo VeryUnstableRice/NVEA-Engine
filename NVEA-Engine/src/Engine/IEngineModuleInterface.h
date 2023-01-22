@@ -10,6 +10,9 @@ public:
     virtual bool Load() = 0;
     virtual void Unload() = 0;
     virtual std::string ModuleName() = 0;
+
+    virtual void OnObjectCreated(class CObject* object) {}
+    virtual void OnObjectDestroyed(class CObject* object) {}
 };
 
 #endif

@@ -114,6 +114,7 @@ void CAbstractEngine::UnloadEngine()
 		module->Unload();
 		delete module;
 	}
+	m_engineModules.empty();
 }
 
 void CAbstractEngine::SetLogVerbosity(std::uint16_t Verbosity)

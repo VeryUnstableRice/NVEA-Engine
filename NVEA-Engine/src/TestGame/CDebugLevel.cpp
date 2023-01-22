@@ -7,7 +7,7 @@
 #include "Engine/InputManager/CBoundInput.h"
 #include "Engine/Object/Puppet/CPlayer.h"
 #include "Engine/RenderPipeline/CMeshRenderEntity.h"
-#include "SoundModule/CSoundEntity.h"
+#include "EngineModules/SoundModule/CSoundEntity.h"
 
 void CDebugLevel::LevelTick(double DeltaTime)
 {
