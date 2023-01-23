@@ -27,14 +27,6 @@ CObject::~CObject()
 {
 }
 
-void CObject::Load(CSerializer* serializer)
-{
-}
-
-void CObject::Save(CSerializer* serializer)
-{
-}
-
 bool CObject::IsPendingDestruction()
 {
     return m_pendingDestruction;

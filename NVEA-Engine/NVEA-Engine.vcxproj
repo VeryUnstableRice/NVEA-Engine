@@ -395,7 +395,6 @@
     <ClCompile Include="src\Engine\CAbstractEngine.cpp" />
     <ClCompile Include="src\Engine\CEngine.cpp" />
     <ClCompile Include="src\Engine\CLevel.cpp" />
-    <ClCompile Include="src\Engine\CSerializer.cpp" />
     <ClCompile Include="src\Engine\AssetManager\CAssetManager.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -670,7 +669,6 @@
     <ClInclude Include="src\Engine\CAbstractEngine.h" />
     <ClInclude Include="src\Engine\CEngine.h" />
     <ClInclude Include="src\Engine\CLevel.h" />
-    <ClInclude Include="src\Engine\CSerializer.h" />
     <ClInclude Include="src\Engine\AssetManager\CAssetManager.h" />
     <ClInclude Include="src\Engine\MemoryManager\CPointedObjectsGC.h" />
     <ClInclude Include="src\Engine\GUI\TextRenderer\CDrawableText.h" />

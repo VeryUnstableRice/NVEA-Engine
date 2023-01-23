@@ -19,9 +19,6 @@ public:
     
     CObject();
     virtual ~CObject();
-    
-    virtual void Load(class CSerializer* serializer);
-    virtual void Save(class CSerializer* serializer);
 
     bool IsPendingDestruction();
 
