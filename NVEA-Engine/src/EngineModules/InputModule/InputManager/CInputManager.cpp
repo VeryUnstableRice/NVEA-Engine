@@ -5,6 +5,7 @@
 #include "CBoundInput.h"
 #include "Engine/CAbstractGame.h"
 #include "Engine/CAbstractEngine.h"
+#include "Engine/CEngine.h"
 #include "Engine/CLevel.h"
 #include "Engine/Object/Puppet/CPlayer.h"
 
@@ -12,6 +13,7 @@ CInputManager::CInputManager()
 {
 	for (int i = 0; i < m_mouseButtons.size(); ++i)
 		m_mouseButtons[i] = false;
+	m_centerCursorEvent = CEngine::Engine->GetDynamicHash("center_cursor");
 }
 
 void CInputManager::pressKey()
@@ -31,12 +33,12 @@ void CInputManager::releaseKey()
 	}
 }
 
-bool CInputManager::Update(SDL_Window* window)
+bool CInputManager::Update()
 {
 	CLevel* Level = CAbstractEngine::Engine->GetCurrentLevel();
-	if(!Level) return true;
+	if(!Level) return false;
 	CPlayer* Player = Level->GetLocalPlayer();
-	if(!Player) return true;
+	if(!Player) return false;
 	
 	SDL_Event event;
 	m_mouserel *= 0;
@@ -50,8 +52,7 @@ bool CInputManager::Update(SDL_Window* window)
 		switch (event.type)
 		{
 		case SDL_QUIT:
-			return false;
-			break;
+			return true;
 		case SDL_KEYDOWN:
 			pressKey();
 			break;
@@ -89,9 +90,7 @@ bool CInputManager::Update(SDL_Window* window)
 			break;
 		case SDL_MOUSEMOTION:
 			if(Player->IsMouseFree()) break;
-			int width, height;
-			SDL_GetWindowSize(window, &width, &height);
-			SDL_WarpMouseInWindow(window, width / 2, height / 2);
+			CEngine::Engine->CallEvent(m_centerCursorEvent);
 			m_mousepos.x = event.motion.x;
 			m_mousepos.y = event.motion.y;
 
@@ -102,7 +101,7 @@ bool CInputManager::Update(SDL_Window* window)
 	}
 
 
-	return true;
+	return false;
 }
 
 glm::ivec2 CInputManager::GetMousePosition()
@@ -118,11 +117,6 @@ glm::ivec2 CInputManager::GetMouseRelative()
 void CInputManager::SetMousePosition(glm::ivec2 _pos)
 {
 	SDL_WarpMouseGlobal(_pos.x, _pos.y);
-}
-
-void CInputManager::CenterMouse()
-{
-	shouldCenter = true;
 }
 
 bool CInputManager::KeyStatus(SDL_Scancode key, EButtonEvent event)

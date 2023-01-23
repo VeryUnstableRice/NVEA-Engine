@@ -29,30 +29,30 @@ enum
 
 class CAABB : public IAbstractCollisionShape
 {
-	SVector3f m_pivot;
-	SVector3f m_size;
+	EngineMath::SVector3f m_pivot;
+	EngineMath::SVector3f m_size;
 
 public:
-	CAABB(const SVector3f& min, const SVector3f& max);
+	CAABB(const EngineMath::SVector3f& min, const EngineMath::SVector3f& max);
 
-	SVector3f getMinVector(bool local = false) const;
-	SVector3f getMaxVector(bool local = false) const;
-	SVector3f getCenterVector(bool local = false) const;
-	SVector3f getSizeVector() const;
+	EngineMath::SVector3f getMinVector(bool local = false) const;
+	EngineMath::SVector3f getMaxVector(bool local = false) const;
+	EngineMath::SVector3f getCenterVector(bool local = false) const;
+	EngineMath::SVector3f getSizeVector() const;
 
 	FCollisionShape GetCollisionShape() const override;
-	bool RayCast(const SVector3f& position, const SVector3f& offset, SVector3f& normal, float& delta) override;
+	bool RayCast(const EngineMath::SVector3f& position, const EngineMath::SVector3f& offset, EngineMath::SVector3f& normal, float& delta) override;
 
-	bool ResolveDynamicSweep(CAABB& box, SVector3f& velocity, SVector3f& normal, bool forceNormalUp = false);
+	bool ResolveDynamicSweep(CAABB& box, EngineMath::SVector3f& velocity, EngineMath::SVector3f& normal, bool forceNormalUp = false);
 
-	bool RaySweep(CAABB& box, const SVector3f& offset, SVector3f& normal, float& delta);
+	bool RaySweep(CAABB& box, const EngineMath::SVector3f& offset, EngineMath::SVector3f& normal, float& delta);
 
-	bool collidesWithPoint(SVector3f point);
+	bool collidesWithPoint(EngineMath::SVector3f point);
 };
 
-inline SVector3f CAABB::getMinVector(bool local) const { return local ? m_pivot - m_size : GetTransformComponent()->GetWorldTransform().Translation + m_pivot - m_size; }
-inline SVector3f CAABB::getMaxVector(bool local) const { return local ? m_pivot + m_size : GetTransformComponent()->GetWorldTransform().Translation + m_pivot + m_size; }
-inline SVector3f CAABB::getCenterVector(bool local) const { return local ? m_pivot : GetTransformComponent()->GetWorldTransform().Translation + m_pivot; }
-inline SVector3f CAABB::getSizeVector() const { return m_size; }
+inline EngineMath::SVector3f CAABB::getMinVector(bool local) const { return local ? m_pivot - m_size : GetTransformComponent()->GetWorldTransform().Translation + m_pivot - m_size; }
+inline EngineMath::SVector3f CAABB::getMaxVector(bool local) const { return local ? m_pivot + m_size : GetTransformComponent()->GetWorldTransform().Translation + m_pivot + m_size; }
+inline EngineMath::SVector3f CAABB::getCenterVector(bool local) const { return local ? m_pivot : GetTransformComponent()->GetWorldTransform().Translation + m_pivot; }
+inline EngineMath::SVector3f CAABB::getSizeVector() const { return m_size; }
 
 #endif

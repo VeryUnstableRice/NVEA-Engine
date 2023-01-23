@@ -1,6 +1,8 @@
 ﻿#include "CMeshRenderEntity.h"
 
+#include "CRenderPipeline.h"
 #include "Engine/CEngine.h"
+#include "EngineModules/RenderModule/CEngineRenderModule.h"
 
 CMeshRenderEntity::CMeshRenderEntity() : CEntity()
 {

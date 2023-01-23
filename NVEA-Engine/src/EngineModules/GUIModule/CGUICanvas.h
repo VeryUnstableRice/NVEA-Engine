@@ -1,11 +1,13 @@
 #ifndef CGUICanvas_Header
 #define CGUICanvas_Header
-#include "Engine/Object/Entity/EntityComponents/CEntityTransformComponent.h"
+#include "CGUIAbstractElement.h"
 
-class CGUICanvas
+class CGUICanvas : public CGUIAbstractElement
 {
-public:
     void RenderEverything();
+public:
+    void AddToScreen();
+    void RemoveFromScreen();
 };
 
 #endif

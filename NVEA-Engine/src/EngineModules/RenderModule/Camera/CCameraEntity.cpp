@@ -1,28 +1,22 @@
 #include "CCameraEntity.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "CFrustumCollider.h"
-#include <iostream>
 #include <glm/glm.hpp>
-#include <iostream>
 
-SMatrix4f CCameraEntity::GetView(bool coordZero) const
+EngineMath::SMatrix4f CCameraEntity::GetView(bool coordZero) const
 {
 	CEntityTransformComponent* component = GetTransformComponent();
 	
 	const STransform Transform = component->GetWorldTransform();
 
 	glm::mat4 output = QuatToMatrix(Transform.Rotation);
-	//SEulerRotator rotator = ToEuler(Transform.Rotation);
-	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Pitch),		{ 0, 1, 0 }); //pitch
-	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Yaw),		{ 1, 0, 0 }); //yaw
-	//output *= glm::rotate(glm::mat4(1), glm::radians((float)rotator.Roll),		{ 0, 0, 1 }); //roll
 	if(!coordZero)
-		output *= glm::translate(SMatrix4f(1), -Transform.Translation);
+		output *= glm::translate(EngineMath::SMatrix4f(1), -Transform.Translation);
 
 	return output;
 }
 
-SVector3f CCameraEntity::GetMiddle() const
+EngineMath::SVector3f CCameraEntity::GetMiddle() const
 {
 	glm::mat4 invproj = glm::inverse(m_projection);
 	std::vector<glm::vec4> margins = 
@@ -53,7 +47,7 @@ SVector3f CCameraEntity::GetMiddle() const
 		maxz = std::max(maxz, v.z);
 	}
 
-	SVector4f output(minx+maxx, miny+maxy, minz+maxz, 1.0);
+	EngineMath::SVector4f output(minx+maxx, miny+maxy, minz+maxz, 1.0);
 	output = output * 0.5f * GetView(false);
 	return output;
 }

@@ -1,12 +1,11 @@
-#ifndef CGAME_HEADER
-#define CGAME_HEADER
+#ifndef CAbstract_Header
+#define CAbstract_Header
 #include <chrono>
 
 #include "IEngineModuleInterface.h"
-#include "Engine/RenderingObjects/CDisplay.h"
-#include "InputManager/CInputManager.h"
+#include "EngineModules/RenderModule/RenderingObjects/CDisplay.h"
 #include "MemoryManager/CMemoryManager.h"
-#include "RenderPipeline/CRenderPipeline.h"
+#include "MemoryManager/CObjectPtr.h"
 
 
 enum ELogVerbosity : std::uint64_t
@@ -38,10 +37,10 @@ protected:
 
 	std::uint16_t FixedFPS = 30;
 	double FixedMSPerSecond = 0;
+
+	std::vector<std::string> m_hashes;
 	
-	CDisplay		m_display;
 	CObjectPtr<class CAssetManager>			m_assetManager;
-	CObjectPtr<CInputManager>				m_inputManager;
 	CObjectPtr<class CAbstractGame> m_gameInstance; //DO NOT USE CREATE A LEVEL HERE WITH NEW
 	CObjectPtr<class CAbstractGame> m_abstractGameInstace;
 
@@ -53,13 +52,17 @@ protected:
 
 	void EngineTick(double deltaTime);
 	void EngineFixedTick(double deltaTime);
+
+	bool RunModules();
 public:
 	CAbstractEngine();
 	virtual ~CAbstractEngine();
-	void Init(std::string title = "noname");
-	void SetResolution(int width, int height);
 	void Run();
 	std::uint32_t GetTickNum() const;
+
+	// will return uncollidable hash, but the hash will never be the same between engine runs
+	// never use to make actual hashes, just use it to make the code faster by not comparing strings all the time
+	std::uint64_t GetDynamicHash(const std::string& hash);
 
 	virtual void LoadEngine();
 	virtual void UnloadEngine();
@@ -70,6 +73,8 @@ public:
 	double GetFixedDeltaTime() const;
 	double GetPassedTime() const;
 
+	void CallEvent(std::uint64_t event);
+
 	bool IsPaused() const;
 	
 	void SetGameInstance(CAbstractGame* GameInstance);
@@ -78,7 +83,6 @@ public:
 	class CLevel* GetCurrentLevel();
 	
 	CAssetManager& GetAssetManager();
-	CInputManager& GetInputManager();
 
 	void PrintLog(const std::string& log, ELogVerbosity Verbosity);
 
@@ -125,5 +129,6 @@ inline CAssetManager& CAbstractEngine::GetAssetManager()
 {
 	return *m_assetManager.get();
 }
+
 
 #endif

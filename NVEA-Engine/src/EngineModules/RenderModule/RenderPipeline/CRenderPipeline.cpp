@@ -4,11 +4,11 @@
 
 #include "CMeshRenderEntity.h"
 #include "Engine/CAbstractGame.h"
-#include "Engine/Camera/CCameraEntity.h"
-#include "Engine/Camera/CCameraManager.h"
-#include "Engine/RenderingObjects/CShader.h"
-#include "Engine/RenderingObjects/CTexture.h"
-#include "Engine/Mesh/AbstractMesh/CAbstractMesh.h"
+#include "EngineModules/RenderModule/Camera/CCameraEntity.h"
+#include "EngineModules/RenderModule/Camera/CCameraManager.h"
+#include "EngineModules/RenderModule/Mesh/AbstractMesh/CAbstractMesh.h"
+#include "EngineModules/RenderModule/RenderingObjects/CShader.h"
+#include "EngineModules/RenderModule/RenderingObjects/CTexture.h"
 
 CRenderPipeline::CRenderPipeline() : CObject()
 {
@@ -19,14 +19,14 @@ void CRenderPipeline::Render()
     CCameraEntity* Camera = CAbstractEngine::Engine->GetGameInstance()->GetCameraManager()->GetCurrentCamera();
     if(!Camera) return;
     
-    SMatrix4f Projection = Camera->getProjection();
-    SMatrix4f ViewMatrix = Camera->GetView(true);
+    EngineMath::SMatrix4f Projection = Camera->getProjection();
+    EngineMath::SMatrix4f ViewMatrix = Camera->GetView(true);
 
     
     CShader*    Shader  = nullptr;
     CTexture*   Texture = nullptr;
-    SVector4f   Color;
-    SMatrix4f   ModelMatrix;
+    EngineMath::SVector4f   Color;
+    EngineMath::SMatrix4f   ModelMatrix;
     bool        IsWireframe = false;
 
     int CurrentIteration = 0;
@@ -36,8 +36,8 @@ void CRenderPipeline::Render()
         CAbstractMesh*  CurrentMesh         = render_entity->GetMesh();
         CShader*        CurrentShader       = render_entity->GetShader();
         CTexture*       CurrentTexture      = render_entity->GetTexture();
-        SVector4f       CurrentColor        = render_entity->GetColor();
-        SMatrix4f       CurrentModelMatrix  = render_entity->GetTransformComponent()->GetTransformMatrix(Camera->GetTransformComponent()->GetWorldTransform().Translation);
+        EngineMath::SVector4f       CurrentColor        = render_entity->GetColor();
+        EngineMath::SMatrix4f       CurrentModelMatrix  = render_entity->GetTransformComponent()->GetTransformMatrix(Camera->GetTransformComponent()->GetWorldTransform().Translation);
         bool            CurrentWireframe    = render_entity->GetWireframe();
 
         if(!CurrentMesh || !CurrentShader) continue;
@@ -92,7 +92,7 @@ void CRenderPipeline::Render()
     }
 }
 
-auto operator>(const SVector4f& A, const SVector4f& B)
+auto operator>(const EngineMath::SVector4f& A, const EngineMath::SVector4f& B)
 {
     return A.x > B.x && A.y > B.y && A.z > B.z;
 }

@@ -8,8 +8,6 @@
 #include <string>
 #include <map>
 
-#include "Engine/RenderingObjects/CShader.h"
-#include "Engine/RenderingObjects/CTexture.h"
 #include "Engine/Object/CObject.h"
 
 /*struct SChar

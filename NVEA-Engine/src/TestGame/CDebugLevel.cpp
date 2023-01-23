@@ -4,14 +4,13 @@
 
 #include "CTestGameInstance.h"
 #include "Engine/CEngine.h"
-#include "Engine/InputManager/CBoundInput.h"
 #include "Engine/Object/Puppet/CPlayer.h"
-#include "Engine/RenderPipeline/CMeshRenderEntity.h"
+#include "EngineModules/InputModule/CInputEngineModule.h"
 #include "EngineModules/SoundModule/CSoundEntity.h"
 
 void CDebugLevel::LevelTick(double DeltaTime)
 {
-    if(CEngine::Engine->GetInputManager().KeyStatus(SDL_SCANCODE_0, EButtonEvent::Released))
+    if(CInputEngineModule::Instance->GetInputManager().KeyStatus(SDL_SCANCODE_0, EButtonEvent::Released))
     {
         m_soundEntity->PlaySound();
     }

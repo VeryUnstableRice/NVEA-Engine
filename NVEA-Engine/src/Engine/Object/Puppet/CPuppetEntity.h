@@ -2,12 +2,12 @@
 #define CPuppetEntity_Header
 #include "CPlayer.h"
 #include "Engine/Object/Entity/CEntity.h"
+#include "EngineModules/InputModule/InputManager/CInputManager.h"
 
 class CPuppetEntity : public CEntity
 {
     CWeakObjectPtr<CPlayer> m_player = nullptr;
     
-    virtual void ManageInput(CInputManager* input_manager);
 public:
     virtual void OnPuppeteerChanged(class CPlayer* player);
     void Tick(double DeltaTime) override;

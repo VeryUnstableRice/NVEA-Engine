@@ -1,6 +1,6 @@
 ﻿#include "CAbstractMeshBuffer.h"
 
-#include "Engine/Mesh/AbstractMesh/CAbstractMesh.h"
+#include "EngineModules/RenderModule/Mesh/AbstractMesh/CAbstractMesh.h"
 
 
 CAbstractMeshBuffer::CAbstractMeshBuffer(CAbstractMesh* abstract_mesh, std::uint16_t index) : m_index(index), m_abstractMesh(abstract_mesh)

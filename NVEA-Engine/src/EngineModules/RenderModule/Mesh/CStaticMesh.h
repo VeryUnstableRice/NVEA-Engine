@@ -9,6 +9,6 @@ class CStaticMesh : public CAbstractMesh
 protected:
     void GenerateBuffers() override;
 public:
-    void Generate(const std::vector<SVector3f>& VertexBuffer);
+    void Generate(const std::vector<EngineMath::SVector3f>& VertexBuffer);
 };
 #endif

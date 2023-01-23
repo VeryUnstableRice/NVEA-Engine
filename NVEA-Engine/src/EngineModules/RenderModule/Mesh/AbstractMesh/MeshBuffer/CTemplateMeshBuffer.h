@@ -47,6 +47,6 @@ void CTemplateMeshBuffer<T, size, type, position>::Initialize(const std::vector<
 }
 
 template<std::uint16_t position>
-using CVector3MeshBuffer = CTemplateMeshBuffer<SVector3f, 3, GL_FLOAT, position>;
+using CVector3MeshBuffer = CTemplateMeshBuffer<EngineMath::SVector3f, 3, GL_FLOAT, position>;
 
 #endif

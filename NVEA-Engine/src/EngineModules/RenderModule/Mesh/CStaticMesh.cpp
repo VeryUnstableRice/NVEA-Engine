@@ -8,7 +8,7 @@ void CStaticMesh::GenerateBuffers()
     m_vertexBuffer = MakeBuffer<CVector3MeshBuffer<0>>();
 }
 
-void CStaticMesh::Generate(const std::vector<SVector3f>& VertexBuffer)
+void CStaticMesh::Generate(const std::vector<EngineMath::SVector3f>& VertexBuffer)
 {
     Init();
     m_indices = (GLuint)VertexBuffer.size();

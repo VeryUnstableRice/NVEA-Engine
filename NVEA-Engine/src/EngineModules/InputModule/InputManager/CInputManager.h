@@ -36,6 +36,8 @@ class CInputManager : public CObject
 	std::array<bool, LeftMouse+1> m_mouseButtonsPrevious;
 	bool shouldCenter = false;
 
+	std::uint64_t m_centerCursorEvent;
+
 	bool KeyDown(SDL_Scancode key);
 	bool KeyPressed(SDL_Scancode key);
 	bool KeyReleased(SDL_Scancode key);
@@ -47,13 +49,12 @@ class CInputManager : public CObject
 	std::vector<CObjectPtr<class CBoundInput>> m_boundInputs;
 public:
 	CInputManager();
-	bool Update(SDL_Window* window);
+	bool Update();
 
 	glm::ivec2 GetMousePosition();
 	glm::ivec2 GetMouseRelative();
 	void SetMousePosition(glm::ivec2 _pos);
-	void CenterMouse();
-
+	
 	bool KeyStatus(SDL_Scancode key, EButtonEvent event);
 	bool MouseButtonStatus(EMouseButton key, EButtonEvent event);
 

@@ -3,8 +3,6 @@
 
 class CTestPlayerPuppet : public CPuppetEntity
 {
-    void ManageInput(CInputManager* input_manager) override;
-
     CObjectPtr<class CCameraEntity> m_cameraEntity;
 
     float m_yaw, m_pitch;

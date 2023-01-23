@@ -2,21 +2,18 @@
 
 #include "CTestGameInstance.h"
 #include "Engine/CEngine.h"
-#include "Engine/Camera/CCameraEntity.h"
 #include "Engine/CLevel.h"
-#include "Engine/Camera/CCameraManager.h"
-#include "Engine/InputManager/CBoundInput.h"
+#include "EngineModules/InputModule/CInputEngineModule.h"
+#include "EngineModules/InputModule/InputManager/CBoundInput.h"
+#include "EngineModules/RenderModule/Camera/CCameraEntity.h"
+#include "EngineModules/RenderModule/Camera/CCameraManager.h"
 
-void CTestPlayerPuppet::ManageInput(CInputManager* input_manager)
-{
-    
-}
 
 void CTestPlayerPuppet::ManageCamera(double DeltaTime)
 {
-    CInputManager& manager = CEngine::Engine->GetInputManager();//.CenterMouse();
+    CInputManager& manager = CInputEngineModule::Instance->GetInputManager();//.CenterMouse();
     GetPlayer()->SetMouseFree(false);
-    glm::vec2 mousepos = manager.GetMouseRelative();
+    EngineMath::SVector2f mousepos = manager.GetMouseRelative();
 
     m_pitch +=  mousepos.x*+DeltaTime*100.0;
     m_yaw   +=  mousepos.y*+DeltaTime*100.0;
@@ -43,10 +40,11 @@ void CTestPlayerPuppet::OnConstruct()
     CAbstractEngine::Engine->GetGameInstance()->GetCameraManager()->SetCurrentCamera(m_cameraEntity);
     m_yaw = 0;
 
-    m_forward   = CAbstractEngine::Engine->GetInputManager().GetInput("forward"     , true)->AddButton({SDL_SCANCODE_W});
-    m_backward  = CAbstractEngine::Engine->GetInputManager().GetInput("backward"    , true)->AddButton({SDL_SCANCODE_S});
-    m_left      = CAbstractEngine::Engine->GetInputManager().GetInput("left"        , true)->AddButton({SDL_SCANCODE_A});
-    m_right     = CAbstractEngine::Engine->GetInputManager().GetInput("right"       , true)->AddButton({SDL_SCANCODE_D});
+    CInputManager& manager = CInputEngineModule::Instance->GetInputManager();
+    m_forward   = manager.GetInput("forward"     , true)->AddButton({SDL_SCANCODE_W});
+    m_backward  = manager.GetInput("backward"    , true)->AddButton({SDL_SCANCODE_S});
+    m_left      = manager.GetInput("left"        , true)->AddButton({SDL_SCANCODE_A});
+    m_right     = manager.GetInput("right"       , true)->AddButton({SDL_SCANCODE_D});
 }
 
 void CTestPlayerPuppet::Tick(double DeltaTime)
@@ -63,8 +61,8 @@ void CTestPlayerPuppet::PhysicsTick(double PhysicsDeltaTime)
     double right = m_right->CheckButtons(EButtonEvent::Down) -  m_left->CheckButtons(EButtonEvent::Down);
 
     CEntityTransformComponent* transform_component = GetTransformComponent();
-    SVector3f forward_vec   = transform_component->GetForwardVector() * (float)forward;
-    SVector3f right_vec     = transform_component->GetRightVector() * (float)right;
+    EngineMath::SVector3f forward_vec   = transform_component->GetForwardVector() * (float)forward;
+    EngineMath::SVector3f right_vec     = transform_component->GetRightVector() * (float)right;
 
     STransform Transform = GetTransformComponent()->GetLocalTransform();
     //CEngine::Engine->PrintLog(std::to_string(ToEuler(Transform.Rotation).Pitch), NORMAL);

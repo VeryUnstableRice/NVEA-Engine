@@ -3,8 +3,9 @@
 #include "CTestObject.h"
 #include "CTestPlayerPuppet.h"
 #include "Engine/CLevel.h"
-#include "Engine/Mesh/CStaticMesh.h"
 #include "Engine/Object/CObject.h"
+#include "EngineModules/RenderModule/Mesh/CStaticMesh.h"
+#include "EngineModules/RenderModule/RenderPipeline/CMeshRenderEntity.h"
 #include "EngineModules/SoundModule/CSoundEntity.h"
 
 class CDebugLevel : public CLevel

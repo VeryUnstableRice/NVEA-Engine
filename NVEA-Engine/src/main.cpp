@@ -23,7 +23,6 @@ int main()
 		engine->SetLogVerbosity(~0);
 		engine->LoadEngine();
 		memory_manager->Initialize();
-		engine->Init();
 
 		CObjectPtr<CAbstractGame> game_instance = CreateObject<CTestGameInstance>();
 		engine->SetGameInstance(game_instance);

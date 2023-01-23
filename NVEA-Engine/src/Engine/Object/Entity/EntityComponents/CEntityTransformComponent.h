@@ -8,12 +8,7 @@
 #include <SDL2/SDL_stdinc.h>
 
 #include "CEntityComponent.h"
-
-typedef glm::vec3 SVector3f;
-typedef glm::vec2 SVector2f;
-typedef glm::vec4 SVector4f;
-typedef glm::mat4 SMatrix4f;
-typedef glm::mat3 SMatrix3f;
+#include "Engine/Math/Math.h"
 
 struct SEulerRotator
 {
@@ -70,9 +65,9 @@ inline SQuaternionRotator ToQuaternions(const SEulerRotator& euler)
     return quat;
 }
 
-inline SMatrix4f QuatToMatrix(const SQuaternionRotator& quat, char flags = 0b111)
+inline EngineMath::SMatrix4f QuatToMatrix(const SQuaternionRotator& quat, char flags = 0b111)
 {
-    SMatrix4f R(1);
+    EngineMath::SMatrix4f R(1);
     float w = quat.w;
     float x = quat.x;
     float y = quat.y;
@@ -104,31 +99,31 @@ inline SMatrix4f QuatToMatrix(const SQuaternionRotator& quat, char flags = 0b111
 
 struct STransform
 {
-    SVector3f           Translation;
+    EngineMath::SVector3f           Translation;
     SQuaternionRotator  Rotation;
-    SVector3f           Scale;
+    EngineMath::SVector3f           Scale;
 
-    SMatrix4f TransformMatrix(const SVector3f& ViewOrigin = SVector3f(0)) const
+    EngineMath::SMatrix4f TransformMatrix(const EngineMath::SVector3f& ViewOrigin = EngineMath::SVector3f(0)) const
     {
-        const SMatrix4f transform = glm::translate(SMatrix4f(1), Translation-ViewOrigin);
-        return transform * GetRotationMatrix() * glm::scale(SMatrix4f(1), Scale);
+        const EngineMath::SMatrix4f transform = glm::translate(EngineMath::SMatrix4f(1), Translation-ViewOrigin);
+        return transform * GetRotationMatrix() * glm::scale(EngineMath::SMatrix4f(1), Scale);
     }
 
-    SMatrix4f GetRotationMatrix(char flags = 0b111) const
+    EngineMath::SMatrix4f GetRotationMatrix(char flags = 0b111) const
     {
         return QuatToMatrix(Rotation, flags);
     }
 
-    STransform(const SVector3f& translation = SVector3f(0), const SQuaternionRotator& rotation=SQuaternionRotator(), const SVector3f& scale=SVector3f(1)) :
+    STransform(const EngineMath::SVector3f& translation = EngineMath::SVector3f(0), const SQuaternionRotator& rotation=SQuaternionRotator(), const EngineMath::SVector3f& scale=EngineMath::SVector3f(1)) :
         Translation(translation), Rotation(rotation), Scale(scale)
     { }
     
-    STransform(const SMatrix4f& matrix)
+    STransform(const EngineMath::SMatrix4f& matrix)
     {
         *this = matrix;
     }
 
-    STransform& operator=(const SMatrix4f& matrix)
+    STransform& operator=(const EngineMath::SMatrix4f& matrix)
     {
         Scale.x = glm::length(matrix[0]);
         Scale.y = glm::length(matrix[1]);
@@ -149,15 +144,15 @@ public:
 
     void SetLocalTransform(const STransform& transform);
 
-    void Move(const SVector3f& vector);
+    void Move(const EngineMath::SVector3f& vector);
     
     const STransform& GetLocalTransform() const;
     STransform GetWorldTransform() const;
-    SMatrix4f GetTransformMatrix(const SVector3f& ViewOrigin = SVector3f(0)) const;
+    EngineMath::SMatrix4f GetTransformMatrix(const EngineMath::SVector3f& ViewOrigin = EngineMath::SVector3f(0)) const;
     
-    SVector3f GetForwardVector()    const;
-    SVector3f GetRightVector()      const;
-    SVector3f GetUpVector()         const;
+    EngineMath::SVector3f GetForwardVector()    const;
+    EngineMath::SVector3f GetRightVector()      const;
+    EngineMath::SVector3f GetUpVector()         const;
 };
 
 #endif

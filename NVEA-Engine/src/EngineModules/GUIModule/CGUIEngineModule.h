@@ -8,15 +8,18 @@
 
 class CGUIEngineModule : public IEngineModuleInterface
 {
-    std::vector<CObjectPtr<CGUICanvas>> m_canvasArray;   
+    std::vector<CObjectPtr<CGUICanvas>> m_canvases;
+
+    void AddCanvas(CGUICanvas* canvas);
+    void RemoveCanvas(CGUICanvas* canvas);
+    friend class CGUICanvas;
 public:
     void Tick(double DeltaTime) override;
     bool Load()                 override;
     void Unload()               override;
     std::string ModuleName()    override;
 
-    void OnObjectCreated(class CObject* object) override;
-    void OnObjectDestroyed(class CObject* object) override;
+    static CGUIEngineModule* Instance;
 };
 
 #endif

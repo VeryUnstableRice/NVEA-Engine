@@ -1,5 +1,5 @@
 ﻿#include "CAbstractGame.h"
-#include "Camera/CCameraManager.h"
+#include "EngineModules/RenderModule/Camera/CCameraManager.h"
 #include "CLevel.h"
 
 CAbstractGame::CAbstractGame()

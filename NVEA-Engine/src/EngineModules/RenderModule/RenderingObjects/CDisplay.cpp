@@ -35,13 +35,19 @@ void CDisplay::SetResolution(int width, int height)
 	SDL_SetWindowPosition(m_window, (DM.w - width) * 0.5, (DM.h - height) * 0.5);
 }
 
-bool CDisplay::Run(CInputManager& InputManager)
+void CDisplay::Run()
 {
 	SDL_GL_SwapWindow(m_window);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.45f, 0.5f, 0.7f, 1.0f);
-	return InputManager.Update(m_window);
+}
+
+void CDisplay::CenterCursor()
+{
+	int width, height;
+	SDL_GetWindowSize(m_window, &width, &height);
+	SDL_WarpMouseInWindow(m_window, width / 2, height / 2);
 }
 
 CDisplay::~CDisplay()

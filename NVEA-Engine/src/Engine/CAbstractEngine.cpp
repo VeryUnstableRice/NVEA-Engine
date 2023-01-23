@@ -43,6 +43,18 @@ void CAbstractEngine::EngineFixedTick(double deltaTime)
 	}
 }
 
+bool CAbstractEngine::RunModules()
+{
+	bool run = false;
+	bool force_exit = false;
+	for(IEngineModuleInterface* module : m_engineModules)
+	{
+		run |= module->Run();
+		force_exit |= module->ForceExit();
+	}
+	return run && !force_exit;
+}
+
 CAbstractEngine::CAbstractEngine() 
 {
 	Engine = this;
@@ -55,16 +67,6 @@ CAbstractEngine::~CAbstractEngine()
 	UnloadEngine();
 }
 
-void CAbstractEngine::Init(std::string title)
-{
-	m_display.Init(title, 640, 480);
-}
-
-void CAbstractEngine::SetResolution(int width, int height)
-{
-	m_display.SetResolution(width, height);
-}
-
 void CAbstractEngine::Run()
 {
 	auto begin = std::chrono::high_resolution_clock::now();
@@ -72,7 +74,7 @@ void CAbstractEngine::Run()
 	
 	auto now_fixed = std::chrono::high_resolution_clock::now();
 	auto last_fixed = std::chrono::high_resolution_clock::now();
-	while(m_display.Run(*m_inputManager))
+	while(RunModules())
 	{
 		//fixed delta time
 		now_fixed = std::chrono::high_resolution_clock::now();
@@ -96,9 +98,20 @@ void CAbstractEngine::Run()
 	}
 }
 
+std::uint64_t CAbstractEngine::GetDynamicHash(const std::string& hash)
+{
+	for(std::string& current : m_hashes)
+	{
+		if(current != hash) continue;
+		return reinterpret_cast<std::uint64_t>(&current);
+	}
+
+	m_hashes.push_back(hash);
+	return reinterpret_cast<std::uint64_t>(&m_hashes.back());
+}
+
 void CAbstractEngine::LoadEngine()
 {
-	m_inputManager = CreateObject<CInputManager>();
 	m_assetManager = CreateObject<CAssetManager>();
 	for(IEngineModuleInterface* module : m_engineModules)
 	{
@@ -120,6 +133,14 @@ void CAbstractEngine::UnloadEngine()
 void CAbstractEngine::SetLogVerbosity(std::uint16_t Verbosity)
 {
 	m_verbosity = Verbosity;
+}
+
+void CAbstractEngine::CallEvent(std::uint64_t event)
+{
+	for(IEngineModuleInterface* module : m_engineModules)
+	{
+		module->OnEvent(event);
+	}
 }
 
 bool CAbstractEngine::IsPaused() const
@@ -155,11 +176,6 @@ CLevel* CAbstractEngine::GetCurrentLevel()
 	if(!Game) return nullptr;
 	CLevel* Level = Game->GetLevel();
 	return Level;
-}
-
-CInputManager& CAbstractEngine::GetInputManager()
-{
-	return *m_inputManager;
 }
 
 void CAbstractEngine::PrintLog(const std::string& log, ELogVerbosity Verbosity)

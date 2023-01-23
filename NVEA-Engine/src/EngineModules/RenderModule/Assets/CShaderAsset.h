@@ -1,7 +1,7 @@
 ﻿#ifndef CShaderAsset_Header
 #define CShaderAsset_Header
-#include "CAbstractAsset.h"
-#include "Engine/RenderingObjects/CShader.h"
+#include "Engine/AssetManager/Asset/CAbstractAsset.h"
+#include "EngineModules/RenderModule/RenderingObjects/CShader.h"
 
 class CShaderAsset : public CTemplateAsset<CShader>
 {

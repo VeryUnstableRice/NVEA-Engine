@@ -3,7 +3,7 @@
 #include "CDebugLevel.h"
 #include "Engine/CAbstractEngine.h"
 #include "Engine/AssetManager/CAssetManager.h"
-#include "Engine/AssetManager/Asset/CShaderAsset.h"
+#include "EngineModules/RenderModule/Assets/CShaderAsset.h"
 #include "EngineModules/SoundModule/Asset/CSoundAsset.h"
 
 CTestGameInstance* CTestGameInstance::Instance = nullptr;

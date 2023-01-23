@@ -11,7 +11,7 @@ enum class FCollisionShape : std::uint8_t
 class IAbstractCollisionShape : public CEntity
 {
 public:
-    virtual bool RayCast(const SVector3f& position, const SVector3f& offset, SVector3f& normal, float& delta) = 0;
+    virtual bool RayCast(const EngineMath::SVector3f& position, const EngineMath::SVector3f& offset, EngineMath::SVector3f& normal, float& delta) = 0;
     virtual FCollisionShape GetCollisionShape() const = 0;
 };
 

@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-CAABB::CAABB(const SVector3f& min, const SVector3f& max)
+CAABB::CAABB(const EngineMath::SVector3f& min, const EngineMath::SVector3f& max)
 {
 	m_pivot = (min + max) * 0.5f;
 	m_size = (max - min) * 0.5f;
@@ -16,14 +16,14 @@ CAABB::CAABB(const SVector3f& min, const SVector3f& max)
 	SECOND BIGGEST SPAGHETTY MONSTER I'VE CREATED(first is the text), I MADE IT WORK, LIKE A GENETIC ALGORITHM, RANDOM CHANGES UNTIL IT WORKS.
 	if someone else than me sees this, I hope you don't get mad, after all 2020 was not a great year
 */
-bool CAABB::RayCast(const SVector3f& position, const SVector3f& offset, SVector3f& normal, float& delta)
+bool CAABB::RayCast(const EngineMath::SVector3f& position, const EngineMath::SVector3f& offset, EngineMath::SVector3f& normal, float& delta)
 {
-	SVector3f NearUndiv, FarUndiv, aabbMin = getMinVector() , aabbMax =  getMaxVector() ;
+	EngineMath::SVector3f NearUndiv, FarUndiv, aabbMin = getMinVector() , aabbMax =  getMaxVector() ;
 	NearUndiv = aabbMax - position;
 	FarUndiv = aabbMin - position;
-	SVector3f invDir = 1.f / offset;
-	SVector3f Near = NearUndiv * invDir;
-	SVector3f Far = FarUndiv * invDir;
+	EngineMath::SVector3f invDir = 1.f / offset;
+	EngineMath::SVector3f Near = NearUndiv * invDir;
+	EngineMath::SVector3f Far = FarUndiv * invDir;
 	normal = { 0,0,0 };
 	
 	if (Near.x > Far.x) std::swap(Near.x, Far.x);
@@ -39,7 +39,7 @@ bool CAABB::RayCast(const SVector3f& position, const SVector3f& offset, SVector3
 	if (hitFar <= 0) return false;
 	if (delta < 0) return false;
 
-	const SVector3f hitPoint = position + offset * delta;
+	const EngineMath::SVector3f hitPoint = position + offset * delta;
 
 	int normals = 0;
 	for(int i = 0; i < 3; ++i)
@@ -61,7 +61,7 @@ bool CAABB::RayCast(const SVector3f& position, const SVector3f& offset, SVector3
 	return true;
 }
 
-bool CAABB::RaySweep(CAABB& box, const SVector3f& offset, SVector3f& normal, float& delta)
+bool CAABB::RaySweep(CAABB& box, const EngineMath::SVector3f& offset, EngineMath::SVector3f& normal, float& delta)
 {
 	struct sizer {
 		CAABB *aabb, *t;
@@ -79,7 +79,7 @@ bool CAABB::RaySweep(CAABB& box, const SVector3f& offset, SVector3f& normal, flo
 }
 
 
-bool CAABB::ResolveDynamicSweep(CAABB& box, SVector3f& velocity, SVector3f& normal, bool forceNormalUp)
+bool CAABB::ResolveDynamicSweep(CAABB& box, EngineMath::SVector3f& velocity, EngineMath::SVector3f& normal, bool forceNormalUp)
 {
 	float delta;
 	if (RaySweep(box, velocity, normal, delta))
@@ -92,10 +92,10 @@ bool CAABB::ResolveDynamicSweep(CAABB& box, SVector3f& velocity, SVector3f& norm
 	return false;
 }
 
-bool CAABB::collidesWithPoint(SVector3f point)
+bool CAABB::collidesWithPoint(EngineMath::SVector3f point)
 {
-	SVector3f min = getMinVector();
-	SVector3f max = getMaxVector();
+	EngineMath::SVector3f min = getMinVector();
+	EngineMath::SVector3f max = getMaxVector();
 	bool x = min.x <= point.x && max.x >= point.x;
 	bool y = min.y <= point.y && max.y >= point.y;
 	bool z = min.z <= point.z && max.z >= point.z;

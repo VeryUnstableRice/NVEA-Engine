@@ -14,7 +14,7 @@ void CEntityTransformComponent::SetLocalTransform(const STransform& transform)
     m_transform = transform;
 }
 
-void CEntityTransformComponent::Move(const SVector3f& vector)
+void CEntityTransformComponent::Move(const EngineMath::SVector3f& vector)
 {
     m_transform.Translation += vector;
 }
@@ -32,9 +32,9 @@ STransform CEntityTransformComponent::GetWorldTransform() const
     return m_transform;
 }
 
-SMatrix4f CEntityTransformComponent::GetTransformMatrix(const SVector3f& ViewOrigin) const
+EngineMath::SMatrix4f CEntityTransformComponent::GetTransformMatrix(const EngineMath::SVector3f& ViewOrigin) const
 {
-    SMatrix4f CurrentMatrix = m_transform.TransformMatrix(ViewOrigin);
+    EngineMath::SMatrix4f CurrentMatrix = m_transform.TransformMatrix(ViewOrigin);
     
     if(const CEntity* transform_parent = GetOwner()->GetEntityParent())
         CurrentMatrix = transform_parent->GetTransformComponent()->GetTransformMatrix(ViewOrigin) * CurrentMatrix;
@@ -42,17 +42,17 @@ SMatrix4f CEntityTransformComponent::GetTransformMatrix(const SVector3f& ViewOri
     return CurrentMatrix;
 }
 
-SVector3f CEntityTransformComponent::GetRightVector() const
+EngineMath::SVector3f CEntityTransformComponent::GetRightVector() const
 {
     return glm::normalize(GetLocalTransform().GetRotationMatrix(0b1)[0]);
 }
 
-SVector3f CEntityTransformComponent::GetUpVector() const
+EngineMath::SVector3f CEntityTransformComponent::GetUpVector() const
 {
     return glm::normalize(GetLocalTransform().GetRotationMatrix(0b10)[1]);
 }
 
-SVector3f CEntityTransformComponent::GetForwardVector() const
+EngineMath::SVector3f CEntityTransformComponent::GetForwardVector() const
 {
     return -glm::normalize(GetLocalTransform().GetRotationMatrix(0b100)[2]);
 }

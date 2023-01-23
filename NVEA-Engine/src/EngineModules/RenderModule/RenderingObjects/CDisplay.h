@@ -4,7 +4,6 @@
 #include <SDL2/SDL.h>
 #include <memory>
 #include <string>
-#include "Engine/InputManager/CInputManager.h"
 
 struct sdl_window_deleter
 {
@@ -19,7 +18,10 @@ class CDisplay
 public:
 	void Init(std::string title, int width, int height);
 	void SetResolution(int width, int height);
-	bool Run(CInputManager& InputManager);
+	void Run();
+	void CenterCursor();
+
+	SDL_Window* GetWindow() const { return m_window; }
 	~CDisplay();
 };
 
