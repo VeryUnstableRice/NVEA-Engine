@@ -28,26 +28,26 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -72,14 +72,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(MSBuildProjectDirectory)\src;$(MSBuildProjectDirectory)\libwin\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(MSBuildProjectDirectory)\libwin\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>
+    </LibraryPath>
     <SourcePath>$(MSBuildProjectDirectory)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(SolutionDir)Libraries\Windows\Include;$(SolutionDir)NVEA-Engine\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(MSBuildProjectDirectory)\src;$(MSBuildProjectDirectory)\libwin\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(MSBuildProjectDirectory)\libwin\lib;$(LibraryPath)</LibraryPath>
+    <LibraryPath>
+    </LibraryPath>
     <SourcePath>$(MSBuildProjectDirectory)\src;$(SourcePath)</SourcePath>
+    <IncludePath>$(SolutionDir)Libraries\Windows\Include;$(SolutionDir)NVEA-Engine\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>
+    </LibraryPath>
+    <IncludePath>$(SolutionDir)Libraries\Windows\Include;$(SolutionDir)NVEA-Engine\src;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>
+    </LibraryPath>
+    <IncludePath>$(SolutionDir)Libraries\Windows\Include;$(SolutionDir)NVEA-Engine\src;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -134,6 +146,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <DebugInformationFormat>OldStyle</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -148,175 +161,6 @@
     <ClCompile Include="src\EngineModules\GUIModule\CGUIAbstractElement.cpp" />
     <ClCompile Include="src\EngineModules\GUIModule\CGUICanvas.cpp" />
     <ClCompile Include="src\EngineModules\GUIModule\CGUIEngineModule.cpp" />
-    <ClCompile Include="src\EngineModules\InputModule\CInputEngineModule.cpp" />
-    <ClCompile Include="src\EngineModules\InputModule\InputManager\CBoundInput.cpp" />
-    <ClCompile Include="src\EngineModules\InputModule\InputManager\CInputManager.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Assets\CShaderAsset.cpp">
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>x64\Release\</BrowseInformationFile>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>true</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
-      <ModuleOutputFile>x64\Release\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <Optimization>MaxSpeed</Optimization>
-      <ObjectFileName>x64\Release\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>x64\Release\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>x64\Release\NVEA-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>x64\Release\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <TrackerLogDirectory>x64\Release\NVEA-Engine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>x64\Release\</XMLDocumentationFileName>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <SDLCheck>true</SDLCheck>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
-    <ClCompile Include="src\EngineModules\RenderModule\Camera\CCameraBuffer.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Camera\CCameraEntity.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Camera\CCameraManager.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Camera\CFrustumCollider.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\CEngineRenderModule.cpp">
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>x64\Release\</BrowseInformationFile>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>true</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
-      <ModuleOutputFile>x64\Release\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <Optimization>MaxSpeed</Optimization>
-      <ObjectFileName>x64\Release\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>x64\Release\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>x64\Release\NVEA-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>x64\Release\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <TrackerLogDirectory>x64\Release\NVEA-Engine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>x64\Release\</XMLDocumentationFileName>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <SDLCheck>true</SDLCheck>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
-    <ClCompile Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\CAbstractMesh.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\MeshBuffer\CAbstractMeshBuffer.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\Mesh\CStaticMesh.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderingObjects\CDisplay.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderingObjects\CShader.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderingObjects\CTexture.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderingObjects\CTextureAtlas.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderPipeline\CMeshRenderEntity.cpp" />
-    <ClCompile Include="src\EngineModules\RenderModule\RenderPipeline\CRenderPipeline.cpp" />
-    <ClCompile Include="src\EngineModules\SoundModule\Asset\CSoundAsset.cpp" />
-    <ClCompile Include="src\EngineModules\SoundModule\CEngineSoundModule.cpp" />
-    <ClCompile Include="src\EngineModules\SoundModule\CSound.cpp" />
-    <ClCompile Include="src\EngineModules\SoundModule\CSoundEntity.cpp" />
     <ClCompile Include="src\Engine\AssetManager\Asset\CAbstractAsset.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -557,113 +401,12 @@
       <LinkCompiled>true</LinkCompiled>
     </ClCompile>
     <ClCompile Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\TestGame\CDebugLevel.cpp">
-      <AssemblerOutput>NoListing</AssemblerOutput>
-      <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
-      <UndefineAllPreprocessorDefinitions>false</UndefineAllPreprocessorDefinitions>
-      <BrowseInformation>false</BrowseInformation>
-      <BrowseInformationFile>x64\Release\</BrowseInformationFile>
-      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <CompileAs>Default</CompileAs>
-      <ConformanceMode>true</ConformanceMode>
-      <DiagnosticsFormat>Column</DiagnosticsFormat>
-      <DisableLanguageExtensions>false</DisableLanguageExtensions>
-      <ErrorReporting>Prompt</ErrorReporting>
-      <ExpandAttributedSource>false</ExpandAttributedSource>
-      <ExceptionHandling>Sync</ExceptionHandling>
-      <EnableASAN>false</EnableASAN>
-      <EnableFuzzer>false</EnableFuzzer>
-      <EnableFiberSafeOptimizations>false</EnableFiberSafeOptimizations>
-      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
-      <FloatingPointModel>Precise</FloatingPointModel>
-      <ForceConformanceInForLoopScope>true</ForceConformanceInForLoopScope>
-      <GenerateModuleDependencies>false</GenerateModuleDependencies>
-      <GenerateSourceDependencies>false</GenerateSourceDependencies>
-      <GenerateXMLDocumentationFiles>false</GenerateXMLDocumentationFiles>
-      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
-      <IntrinsicFunctions>true</IntrinsicFunctions>
-      <IgnoreStandardIncludePath>false</IgnoreStandardIncludePath>
-      <LanguageStandard>stdcpp20</LanguageStandard>
-      <LanguageStandard_C>Default</LanguageStandard_C>
-      <MinimalRebuild>false</MinimalRebuild>
-      <ModuleDependenciesFile>x64\Release\</ModuleDependenciesFile>
-      <ModuleOutputFile>x64\Release\</ModuleOutputFile>
-      <OmitDefaultLibName>false</OmitDefaultLibName>
-      <FavorSizeOrSpeed>Neither</FavorSizeOrSpeed>
-      <WholeProgramOptimization>true</WholeProgramOptimization>
-      <Optimization>MaxSpeed</Optimization>
-      <ObjectFileName>x64\Release\</ObjectFileName>
-      <CallingConvention>Cdecl</CallingConvention>
-      <ProgramDataBaseFileName>x64\Release\vc143.pdb</ProgramDataBaseFileName>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>x64\Release\NVEA-Engine.pch</PrecompiledHeaderOutputFile>
-      <PreprocessToFile>false</PreprocessToFile>
-      <PreprocessKeepComments>false</PreprocessKeepComments>
-      <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
-      <RemoveUnreferencedCodeData>true</RemoveUnreferencedCodeData>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
-      <ShowIncludes>false</ShowIncludes>
-      <SourceDependenciesFile>x64\Release\</SourceDependenciesFile>
-      <SuppressStartupBanner>true</SuppressStartupBanner>
-      <BufferSecurityCheck>true</BufferSecurityCheck>
-      <SmallerTypeCheck>false</SmallerTypeCheck>
-      <SpectreMitigation>false</SpectreMitigation>
-      <StructMemberAlignment>Default</StructMemberAlignment>
-      <SupportJustMyCode>false</SupportJustMyCode>
-      <TrackerLogDirectory>x64\Release\NVEA-Engine.tlog\</TrackerLogDirectory>
-      <TranslateIncludes>false</TranslateIncludes>
-      <MinimalRebuildFromTracking>true</MinimalRebuildFromTracking>
-      <TreatWarningAsError>false</TreatWarningAsError>
-      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
-      <UseFullPaths>true</UseFullPaths>
-      <WarningLevel>Level3</WarningLevel>
-      <XMLDocumentationFileName>x64\Release\</XMLDocumentationFileName>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <IntelJCCErratum>false</IntelJCCErratum>
-      <TreatAngleIncludeAsExternal>false</TreatAngleIncludeAsExternal>
-      <ExternalWarningLevel>InheritWarningLevel</ExternalWarningLevel>
-      <TreatExternalTemplatesAsInternal>true</TreatExternalTemplatesAsInternal>
-      <DisableAnalyzeExternal>false</DisableAnalyzeExternal>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_UNICODE;UNICODE;</PreprocessorDefinitions>
-      <FunctionLevelLinking>true</FunctionLevelLinking>
-      <SDLCheck>true</SDLCheck>
-      <LinkCompiled>true</LinkCompiled>
-    </ClCompile>
-    <ClCompile Include="src\TestGame\CTestGameInstance.cpp" />
-    <ClCompile Include="src\TestGame\CTestObject.cpp" />
-    <ClCompile Include="src\TestGame\CTestPlayerPuppet.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="glad\glad.h" />
     <ClInclude Include="src\EngineModules\GUIModule\CGUIAbstractElement.h" />
     <ClInclude Include="src\EngineModules\GUIModule\CGUICanvas.h" />
     <ClInclude Include="src\EngineModules\GUIModule\CGUIEngineModule.h" />
-    <ClInclude Include="src\EngineModules\InputModule\CInputEngineModule.h" />
-    <ClInclude Include="src\EngineModules\InputModule\InputManager\CBoundInput.h" />
-    <ClInclude Include="src\EngineModules\InputModule\InputManager\CInputManager.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Assets\CShaderAsset.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Camera\CCameraBuffer.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Camera\CCameraEntity.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Camera\CCameraManager.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Camera\CFrustumCollider.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\CEngineRenderModule.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\CAbstractMesh.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\MeshBuffer\CAbstractMeshBuffer.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\Mesh\CStaticMesh.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderingObjects\CDisplay.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderingObjects\CShader.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderingObjects\CTexture.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderingObjects\CTextureAtlas.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderPipeline\CMeshRenderEntity.h" />
-    <ClInclude Include="src\EngineModules\RenderModule\RenderPipeline\CRenderPipeline.h" />
-    <ClInclude Include="src\EngineModules\SoundModule\Asset\CSoundAsset.h" />
-    <ClInclude Include="src\EngineModules\SoundModule\CEngineSoundModule.h" />
-    <ClInclude Include="src\EngineModules\SoundModule\CSound.h" />
-    <ClInclude Include="src\EngineModules\SoundModule\CSoundEntity.h" />
     <ClInclude Include="src\Engine\AssetManager\Asset\CAbstractAsset.h" />
     <ClInclude Include="src\Engine\CAbstractGame.h" />
     <ClInclude Include="src\Engine\CAbstractEngine.h" />
@@ -687,10 +430,6 @@
     <ClInclude Include="src\Engine\Object\Puppet\CPuppetEntity.h" />
     <ClInclude Include="src\Engine\Physics\CollisionShapes\CAABB.h" />
     <ClInclude Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.h" />
-    <ClInclude Include="src\TestGame\CDebugLevel.h" />
-    <ClInclude Include="src\TestGame\CTestGameInstance.h" />
-    <ClInclude Include="src\TestGame\CTestObject.h" />
-    <ClInclude Include="src\TestGame\CTestPlayerPuppet.h" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="src\Engine\GUI" />

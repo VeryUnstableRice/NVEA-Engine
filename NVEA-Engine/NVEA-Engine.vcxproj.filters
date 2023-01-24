@@ -18,28 +18,13 @@
     <ClCompile Include="src\Engine\CLevel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="glad\glad.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\AssetManager\Asset\CAbstractAsset.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\AssetManager\Asset\CShaderAsset.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\CAbstractGame.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Camera\CCameraEntity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Camera\CCameraManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Camera\CFrustumCollider.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\CAbstractEngine.cpp">
@@ -48,40 +33,16 @@
     <ClCompile Include="src\Engine\CEngine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\CSerializer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\AssetManager\CAssetManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\EngineModules\RenderingModule\CEngineRenderModule.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\Engine\MemoryManager\CPointedObjectsGC.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\RenderingObjects\CDisplay.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\RenderingObjects\CShader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\RenderingObjects\CTexture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\RenderingObjects\CTextureAtlas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\GUI\TextRenderer\CDrawableText.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\IEngineModuleInterface.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\InputManager\CBoundInput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\InputManager\CInputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Math\Math.cpp">
@@ -91,18 +52,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\MemoryManager\CObjectPtr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Mesh\AbstractMesh\CAbstractMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Mesh\AbstractMesh\MeshBuffer\CAbstractMeshBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Engine\Mesh\CStaticMesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Object\CObject.cpp">
@@ -132,22 +81,13 @@
     <ClCompile Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\RenderPipeline\CMeshRenderEntity.cpp">
+    <ClCompile Include="src\EngineModules\GUIModule\CGUIAbstractElement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\RenderPipeline\CRenderPipeline.cpp">
+    <ClCompile Include="src\EngineModules\GUIModule\CGUICanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TestGame\CDebugLevel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TestGame\CTestGameInstance.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TestGame\CTestObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\TestGame\CTestPlayerPuppet.cpp">
+    <ClCompile Include="src\EngineModules\GUIModule\CGUIEngineModule.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -161,19 +101,7 @@
     <ClInclude Include="src\Engine\AssetManager\Asset\CAbstractAsset.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\AssetManager\Asset\CShaderAsset.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\CAbstractGame.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Camera\CCameraEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Camera\CCameraManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Camera\CFrustumCollider.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\CAbstractEngine.h">
@@ -182,40 +110,16 @@
     <ClInclude Include="src\Engine\CEngine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\CSerializer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\AssetManager\CAssetManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\EngineModules\RenderingModule\CEngineRenderModule.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Engine\MemoryManager\CPointedObjectsGC.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\RenderingObjects\CDisplay.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\RenderingObjects\CShader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\RenderingObjects\CTexture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\RenderingObjects\CTextureAtlas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\GUI\TextRenderer\CDrawableText.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\IEngineModuleInterface.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\InputManager\CBoundInput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\InputManager\CInputManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Math\Math.h">
@@ -231,18 +135,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\MemoryManager\CObjectPtr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Mesh\AbstractMesh\CAbstractMesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Mesh\AbstractMesh\MeshBuffer\CAbstractMeshBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Engine\Mesh\CStaticMesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Object\CObject.h">
@@ -272,22 +164,13 @@
     <ClInclude Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\RenderPipeline\CMeshRenderEntity.h">
+    <ClInclude Include="src\EngineModules\GUIModule\CGUIAbstractElement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\RenderPipeline\CRenderPipeline.h">
+    <ClInclude Include="src\EngineModules\GUIModule\CGUICanvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TestGame\CDebugLevel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TestGame\CTestGameInstance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TestGame\CTestObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\TestGame\CTestPlayerPuppet.h">
+    <ClInclude Include="src\EngineModules\GUIModule\CGUIEngineModule.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -3,7 +3,6 @@
 #include <chrono>
 
 #include "IEngineModuleInterface.h"
-#include "EngineModules/RenderModule/RenderingObjects/CDisplay.h"
 #include "MemoryManager/CMemoryManager.h"
 #include "MemoryManager/CObjectPtr.h"
 
@@ -73,6 +72,8 @@ public:
 	double GetFixedDeltaTime() const;
 	double GetPassedTime() const;
 
+	void AddModule(IEngineModuleInterface* Module);
+
 	void CallEvent(std::uint64_t event);
 
 	bool IsPaused() const;
@@ -123,6 +124,11 @@ inline double CAbstractEngine::GetFixedDeltaTime() const
 inline double CAbstractEngine::GetPassedTime() const
 {
 	return m_passedTime;
+}
+
+inline void CAbstractEngine::AddModule(IEngineModuleInterface* Module)
+{
+	m_engineModules.push_back(Module);
 }
 
 inline CAssetManager& CAbstractEngine::GetAssetManager()

@@ -2,7 +2,6 @@
 #define CPuppetEntity_Header
 #include "CPlayer.h"
 #include "Engine/Object/Entity/CEntity.h"
-#include "EngineModules/InputModule/InputManager/CInputManager.h"
 
 class CPuppetEntity : public CEntity
 {
