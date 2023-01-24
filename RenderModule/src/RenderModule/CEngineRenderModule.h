@@ -7,6 +7,7 @@
 class CEngineRenderModule : public IEngineModuleInterface
 {
     CObjectPtr<class CRenderPipeline> m_renderPipeline;
+    CObjectPtr<class CCameraManager> m_cameraManager;
     CDisplay m_display;
     std::uint64_t m_centerCursorEvent;
 public:
@@ -20,7 +21,7 @@ public:
     
     CRenderPipeline* GetRenderPipeline();
     CDisplay& GetDisplay() { return m_display; };
-
+    CCameraManager& GetCameraManager() { return *m_cameraManager; }
 
     static CEngineRenderModule* Instance;
 };

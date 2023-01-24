@@ -9,6 +9,7 @@
 #include "RenderModule/Mesh/AbstractMesh/CAbstractMesh.h"
 #include "RenderModule/RenderingObjects/CShader.h"
 #include "RenderModule/RenderingObjects/CTexture.h"
+#include "RenderModule/CEngineRenderModule.h"
 
 CRenderPipeline::CRenderPipeline() : CObject()
 {
@@ -16,7 +17,7 @@ CRenderPipeline::CRenderPipeline() : CObject()
 
 void CRenderPipeline::Render()
 {
-    CCameraEntity* Camera = CAbstractEngine::Engine->GetGameInstance()->GetCameraManager()->GetCurrentCamera();
+    CCameraEntity* Camera = CEngineRenderModule::Instance->GetCameraManager().GetCurrentCamera();
     if(!Camera) return;
     
     EngineMath::SMatrix4f Projection = Camera->getProjection();

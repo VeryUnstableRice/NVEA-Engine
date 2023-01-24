@@ -6,7 +6,6 @@
 class CAbstractGame : public CObject
 {
     CObjectPtr<class CLevel>            m_currentLevel;
-    CObjectPtr<class CCameraManager>    m_cameraManager;
 protected:
     void SetLevel(CLevel* level);
 
@@ -20,7 +19,6 @@ public:
     virtual void UninitiazeGameInstance()               = 0;
     
     virtual CLevel*         GetLevel() const;
-    virtual CCameraManager* GetCameraManager() const;
     
     void Tick(double DeltaTime) const;
     void PhysicsTick(double DeltaTime) const;

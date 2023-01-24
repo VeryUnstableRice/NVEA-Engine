@@ -1,5 +1,6 @@
 ﻿#include "CEngineRenderModule.h"
 #include "RenderPipeline/CRenderPipeline.h"
+#include "RenderModule/Camera/CCameraManager.h"
 #include "Engine/CAbstractEngine.h"
 #include "Engine/CEngine.h"
 
@@ -15,6 +16,7 @@ bool CEngineRenderModule::Load()
     m_renderPipeline = CreateObject<CRenderPipeline>();
     m_display.Init("noname", 640, 480);
     m_centerCursorEvent = CEngine::Engine->GetDynamicHash("center_cursor");
+    m_cameraManager = CreateObject<CCameraManager>();
     Instance = this;
     return m_renderPipeline;
 }

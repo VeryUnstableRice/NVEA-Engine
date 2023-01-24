@@ -1,5 +1,4 @@
 ﻿#include "CAbstractGame.h"
-#include "EngineModules/RenderModule/Camera/CCameraManager.h"
 #include "CLevel.h"
 
 CAbstractGame::CAbstractGame()
@@ -8,18 +7,12 @@ CAbstractGame::CAbstractGame()
 
 void CAbstractGame::Initialize()
 {
-    m_cameraManager = CreateObject<CCameraManager>();
     InitializeAssets();
 }
 
 CLevel* CAbstractGame::GetLevel() const
 {
     return m_currentLevel.get();
-}
-
-CCameraManager* CAbstractGame::GetCameraManager() const
-{
-    return m_cameraManager.get();
 }
 
 void CAbstractGame::Tick(double DeltaTime) const
