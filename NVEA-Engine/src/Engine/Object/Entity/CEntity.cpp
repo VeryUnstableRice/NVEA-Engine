@@ -1,7 +1,7 @@
 ﻿#include "CEntity.h"
 
 #include "Engine/CLevel.h"
-#include "Engine/Object/Puppet/CPuppetEntity.h"
+#include "Engine/Object/Entity/Puppet/CPuppetEntity.h"
 
 
 CEntity::CEntity()
@@ -50,11 +50,25 @@ void CEntity::OnConstruct()
 {
     CObject::OnConstruct();
     m_transformComponent = CreateComponent<CEntityTransformComponent>();
+    InitializeComponents();
 }
 
 void CEntity::OnDestroy()
 {
     CObject::OnDestroy();
+    DeinitializeComponents();
+}
+
+void CEntity::InitializeComponents()
+{
+    for(CEntityComponent* component : m_componentsPointers)
+        component->InitializeComponent();
+}
+
+void CEntity::DeinitializeComponents()
+{
+    for(CEntityComponent* component : m_componentsPointers)
+        component->DeinitializeComponent();
 }
 
 bool CEntity::ShouldTickWhenPause() const

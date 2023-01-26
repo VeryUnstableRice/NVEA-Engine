@@ -4,7 +4,7 @@
 
 class CCameraManager : public CEntity
 {
-    CWeakObjectPtr<class CCameraEntity> m_cameraEntity;
+    CObjectPtr<class CCameraEntity> m_cameraEntity;
 public:
     class CCameraEntity* GetCurrentCamera();
     void SetCurrentCamera(class CCameraEntity* entity);

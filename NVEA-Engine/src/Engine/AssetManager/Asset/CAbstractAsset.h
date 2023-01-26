@@ -8,6 +8,7 @@
 class CAbstractAsset : public CObject
 {
 public:
+    virtual bool ShouldBeInit() const { return true; } 
     virtual void Initialiaze(const std::string& path) = 0;
 };
 

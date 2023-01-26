@@ -10,6 +10,9 @@ class CTexture : public CObject
 	bool m_init = false;
 	GLuint m_tex;
 	GLint m_width, m_height;
+	void AttachToBuffer(class CCameraBuffer* camera_buffer, GLenum type = GL_COLOR_ATTACHMENT0);
+	void ReallocateSize(class CCameraBuffer* camera_buffer);
+	friend class CCameraBuffer;	
 public:
 	virtual ~CTexture();
 	

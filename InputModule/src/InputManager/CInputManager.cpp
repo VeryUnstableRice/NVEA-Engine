@@ -7,7 +7,7 @@
 #include "Engine/CAbstractEngine.h"
 #include "Engine/CEngine.h"
 #include "Engine/CLevel.h"
-#include "Engine/Object/Puppet/CPlayer.h"
+#include "Engine/Object/Entity/Puppet/CPlayer.h"
 
 CInputManager::CInputManager()
 {

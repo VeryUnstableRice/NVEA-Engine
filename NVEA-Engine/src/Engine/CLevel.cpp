@@ -1,5 +1,5 @@
 #include "CLevel.h"
-#include "Engine/Object/Puppet/CPlayer.h"
+#include "Engine/Object/Entity/Puppet/CPlayer.h"
 
 void CLevel::DestroyEntity(CEntity* entity)
 {
@@ -24,7 +24,7 @@ void CLevel::PhysicsTick(double FixedDeltaTime)
 
 void CLevel::LevelChanged()
 {
-    for(CWeakObjectPtr<CPlayer>& player : m_players)
+    for(CObjectPtr<CPlayer>& player : m_players)
         player->Destroy();
     m_players.clear();
     SpawnEntity<CPlayer>();

@@ -38,9 +38,9 @@ void CDisplay::SetResolution(int width, int height)
 void CDisplay::Run()
 {
 	SDL_GL_SwapWindow(m_window);
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glClearColor(0.45f, 0.5f, 0.7f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 void CDisplay::CenterCursor()

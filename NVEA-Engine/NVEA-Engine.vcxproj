@@ -326,8 +326,8 @@
     <ClCompile Include="src\Engine\Object\Entity\CEntity.cpp" />
     <ClCompile Include="src\Engine\Object\Entity\EntityComponents\CEntityComponent.cpp" />
     <ClCompile Include="src\Engine\Object\Entity\EntityComponents\CEntityTransformComponent.cpp" />
-    <ClCompile Include="src\Engine\Object\Puppet\CPlayer.cpp" />
-    <ClCompile Include="src\Engine\Object\Puppet\CPuppetEntity.cpp" />
+    <ClCompile Include="src\Engine\Object\Entity\Puppet\CPlayer.cpp" />
+    <ClCompile Include="src\Engine\Object\Entity\Puppet\CPuppetEntity.cpp" />
     <ClCompile Include="src\Engine\Physics\CollisionShapes\CAABB.cpp">
       <AssemblerOutput>NoListing</AssemblerOutput>
       <AssemblerListingLocation>x64\Release\</AssemblerListingLocation>
@@ -428,8 +428,8 @@
     <ClInclude Include="src\Engine\Object\Entity\CEntity.h" />
     <ClInclude Include="src\Engine\Object\Entity\EntityComponents\CEntityComponent.h" />
     <ClInclude Include="src\Engine\Object\Entity\EntityComponents\CEntityTransformComponent.h" />
-    <ClInclude Include="src\Engine\Object\Puppet\CPlayer.h" />
-    <ClInclude Include="src\Engine\Object\Puppet\CPuppetEntity.h" />
+    <ClInclude Include="src\Engine\Object\Entity\Puppet\CPlayer.h" />
+    <ClInclude Include="src\Engine\Object\Entity\Puppet\CPuppetEntity.h" />
     <ClInclude Include="src\Engine\Physics\CollisionShapes\CAABB.h" />
     <ClInclude Include="src\Engine\Physics\CollisionShapes\IAbstractCollisionShape.h" />
   </ItemGroup>

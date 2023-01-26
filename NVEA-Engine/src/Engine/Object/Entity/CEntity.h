@@ -12,10 +12,10 @@ class CEntity : public CObject, public ITickingInterface
 {
     class CLevel* m_level;
     CEntity* m_parent;
-    std::vector<CWeakObjectPtr<CEntity>> m_children;
+    std::vector<CObjectPtr<CEntity>> m_children;
     std::vector<CObjectPtr<class CEntityComponent>> m_componentsPointers;
-
-    CWeakObjectPtr<CEntityTransformComponent> m_transformComponent;
+    bool m_componentsInitialized = false;
+    CObjectPtr<CEntityTransformComponent> m_transformComponent;
 protected:
     void RemoveComponent(CEntityComponent* Component);
 
@@ -25,8 +25,13 @@ protected:
         T* Component = CreateObject<T>();
         Component->SetOwner(this);
         m_componentsPointers.push_back(Component);
+        if(m_componentsInitialized)
+            ((CEntityComponent*)(Component))->InitializeComponent();
         return Component;
     }
+
+    void InitializeComponents();
+    void DeinitializeComponents();
 public:
     CEntity();
     virtual ~CEntity();

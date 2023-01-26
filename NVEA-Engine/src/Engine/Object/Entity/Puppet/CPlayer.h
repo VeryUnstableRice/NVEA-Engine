@@ -6,7 +6,7 @@
 class CPlayer : public CEntity
 {
     //the entity controlled by the player
-    CWeakObjectPtr<class CPuppetEntity> m_puppet;
+    CObjectPtr<class CPuppetEntity> m_puppet;
     bool m_mouseFree;
 public:
     CPlayer();

@@ -18,7 +18,7 @@ class CSound : public CObject
 
     friend class CSoundEntity;
 
-    std::vector<char> LoadWAV(const std::string& filePath, int& channel, int& sample_rate, int& beats_per_second);
+    std::vector<char> LoadWAV(const std::string& filePath, int& channel, int& sample_rate, ALsizei& beats_per_second);
 public:
     void Init(const std::string& filePath);
 

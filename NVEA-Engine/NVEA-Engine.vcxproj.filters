@@ -69,10 +69,10 @@
     <ClCompile Include="src\Engine\Object\Entity\EntityComponents\CEntityTransformComponent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Object\Puppet\CPlayer.cpp">
+    <ClCompile Include="src\Engine\Object\Entity\Puppet\CPlayer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Engine\Object\Puppet\CPuppetEntity.cpp">
+    <ClCompile Include="src\Engine\Object\Entity\Puppet\CPuppetEntity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Engine\Physics\CollisionShapes\CAABB.cpp">
@@ -152,10 +152,10 @@
     <ClInclude Include="src\Engine\Object\Entity\EntityComponents\CEntityTransformComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Object\Puppet\CPlayer.h">
+    <ClInclude Include="src\Engine\Object\Entity\Puppet\CPlayer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Engine\Object\Puppet\CPuppetEntity.h">
+    <ClInclude Include="src\Engine\Object\Entity\Puppet\CPuppetEntity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Engine\Physics\CollisionShapes\CAABB.h">

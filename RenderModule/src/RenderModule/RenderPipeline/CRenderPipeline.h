@@ -10,12 +10,13 @@ class CRenderPipeline : public CObject
 {
     using RenderEntitiesVector = std::vector<CWeakObjectPtr<class CMeshRenderEntity>>;
     RenderEntitiesVector m_entities;
+
+
+    void PrepareForRender();
 public:
     CRenderPipeline();
     void Render();
 
-    void PrepareForRender();
-    
     void Subscribe(class CMeshRenderEntity* Entity);
     void Unsubscribe(class CMeshRenderEntity* Entity);
 };

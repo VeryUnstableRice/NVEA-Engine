@@ -5,7 +5,7 @@
 
 class CPuppetEntity : public CEntity
 {
-    CWeakObjectPtr<CPlayer> m_player = nullptr;
+    CObjectPtr<CPlayer> m_player = nullptr;
     
 public:
     virtual void OnPuppeteerChanged(class CPlayer* player);

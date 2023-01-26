@@ -39,7 +39,7 @@ protected:
 
 	std::vector<std::string> m_hashes;
 	
-	CObjectPtr<class CAssetManager>			m_assetManager;
+	CObjectPtr<class CAssetManager>	m_assetManager;
 	CObjectPtr<class CAbstractGame> m_gameInstance; //DO NOT USE CREATE A LEVEL HERE WITH NEW
 	CObjectPtr<class CAbstractGame> m_abstractGameInstace;
 

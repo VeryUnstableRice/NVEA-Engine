@@ -3,6 +3,8 @@
 #include "stb_image.h"
 #include <iostream>
 
+#include "RenderModule/Camera/CCameraBuffer.h"
+
 CTexture::~CTexture()
 {
 	Clear();
@@ -21,7 +23,6 @@ void CTexture::Init(std::string filepath)
 void CTexture::InitData(unsigned char* data, GLenum mode, int width, int height, GLenum type)
 {
 	Clear();
-	m_init = true;
 	glActiveTexture(GL_TEXTURE0);
 
 	glGenTextures(1, &m_tex);
@@ -36,11 +37,39 @@ void CTexture::InitData(unsigned char* data, GLenum mode, int width, int height,
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	m_init = true;
+}
+
+void CTexture::AttachToBuffer(CCameraBuffer* camera_buffer, GLenum type)
+{
+	Clear();
+	glGenTextures(1, &m_tex);
+	glBindTexture(GL_TEXTURE_2D, m_tex);
+	
+	ReallocateSize(camera_buffer);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, camera_buffer->m_fbo);
+	glFramebufferTexture2D(GL_FRAMEBUFFER, type, GL_TEXTURE_2D, m_tex, 0); 
+	m_init = true;
+}
+
+void CTexture::ReallocateSize(CCameraBuffer* camera_buffer)
+{
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, camera_buffer->m_width, camera_buffer->m_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 }
 
 void CTexture::Clear()
 {
 	if (!m_init) return;
+	glDeleteTextures(1, &m_tex);
+	m_init = false;
 }
 
 void CTexture::Bind()

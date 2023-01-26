@@ -8,7 +8,6 @@ CEngineRenderModule* CEngineRenderModule::Instance = nullptr;
 
 void CEngineRenderModule::Tick(double DeltaTime)
 {
-    m_renderPipeline->Render();
 }
 
 bool CEngineRenderModule::Load()
@@ -34,6 +33,7 @@ std::string CEngineRenderModule::ModuleName()
 bool CEngineRenderModule::Run()
 {
     m_display.Run();
+    m_renderPipeline->Render();
     return true;
 }
 

@@ -7,7 +7,12 @@
 //Abstract class
 class CEntityComponent : public CObject, public ITickingInterface
 {
-    CWeakObjectPtr<class CEntity> OwningEntity = nullptr;
+    CObjectPtr<class CEntity> OwningEntity = nullptr;
+
+    friend class CEntity;
+protected:
+    virtual void InitializeComponent() {};
+    virtual void DeinitializeComponent() {};
 public:
     CEntityComponent();
     CEntity* GetOwner() const;

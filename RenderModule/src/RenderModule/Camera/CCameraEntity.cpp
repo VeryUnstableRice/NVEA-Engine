@@ -1,6 +1,7 @@
 #include "CCameraEntity.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include "CFrustumCollider.h"
+#include "CCameraBuffer.h"
 #include <glm/glm.hpp>
 
 EngineMath::SMatrix4f CCameraEntity::GetView(bool coordZero) const
@@ -58,6 +59,7 @@ CCameraEntity::~CCameraEntity()
 
 void CCameraEntity::OnConstruct()
 {
+	m_cameraBuffer = CreateComponent<CCameraBuffer>();
 	CEntity::OnConstruct();
 	m_collider.updatePlanes();
 }

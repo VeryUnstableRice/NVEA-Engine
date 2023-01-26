@@ -6,7 +6,7 @@
 class CLevel : public CObject
 {
 	std::vector<CObjectPtr<class CEntity>> m_entities;
-	std::vector<CWeakObjectPtr<class CPlayer>> m_players;
+	std::vector<CObjectPtr<class CPlayer>> m_players;
 protected:
 	virtual void LevelTick(double DeltaTime) {};
 	virtual void LevelPhysicsTick(double DeltaTime) {};

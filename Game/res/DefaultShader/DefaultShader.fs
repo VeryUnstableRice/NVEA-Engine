@@ -1,5 +1,4 @@
 #version 330
-
 out vec4 color_output;
 
 in vec2 out_texcoord;

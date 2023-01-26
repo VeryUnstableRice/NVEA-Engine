@@ -29,7 +29,7 @@ public:
 private:
     std::string m_boundInputName = "";
     std::vector<SButton> m_buttons;
-    CWeakObjectPtr<CInputManager> m_inputManager;
+    CObjectPtr<CInputManager> m_inputManager;
 
 public:
     CBoundInput();

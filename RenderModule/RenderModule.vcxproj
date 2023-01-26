@@ -143,7 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\RenderModule\Assets\CMeshAsset.cpp" />
     <ClCompile Include="src\RenderModule\Assets\CShaderAsset.cpp" />
+    <ClCompile Include="src\RenderModule\Assets\CTextureAsset.cpp" />
     <ClCompile Include="src\RenderModule\Camera\CCameraBuffer.cpp" />
     <ClCompile Include="src\RenderModule\Camera\CCameraEntity.cpp" />
     <ClCompile Include="src\RenderModule\Camera\CCameraManager.cpp" />
@@ -154,6 +156,7 @@
     <ClCompile Include="src\RenderModule\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.cpp" />
     <ClCompile Include="src\RenderModule\Mesh\CStaticMesh.cpp" />
     <ClCompile Include="src\RenderModule\RenderingObjects\CDisplay.cpp" />
+    <ClCompile Include="src\RenderModule\RenderingObjects\CRenderBuffer.cpp" />
     <ClCompile Include="src\RenderModule\RenderingObjects\CShader.cpp" />
     <ClCompile Include="src\RenderModule\RenderingObjects\CTexture.cpp" />
     <ClCompile Include="src\RenderModule\RenderingObjects\CTextureAtlas.cpp" />
@@ -161,7 +164,9 @@
     <ClCompile Include="src\RenderModule\RenderPipeline\CRenderPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\RenderModule\Assets\CMeshAsset.h" />
     <ClInclude Include="src\RenderModule\Assets\CShaderAsset.h" />
+    <ClInclude Include="src\RenderModule\Assets\CTextureAsset.h" />
     <ClInclude Include="src\RenderModule\Camera\CCameraBuffer.h" />
     <ClInclude Include="src\RenderModule\Camera\CCameraEntity.h" />
     <ClInclude Include="src\RenderModule\Camera\CCameraManager.h" />
@@ -172,6 +177,7 @@
     <ClInclude Include="src\RenderModule\Mesh\AbstractMesh\MeshBuffer\CTemplateMeshBuffer.h" />
     <ClInclude Include="src\RenderModule\Mesh\CStaticMesh.h" />
     <ClInclude Include="src\RenderModule\RenderingObjects\CDisplay.h" />
+    <ClInclude Include="src\RenderModule\RenderingObjects\CRenderBuffer.h" />
     <ClInclude Include="src\RenderModule\RenderingObjects\CShader.h" />
     <ClInclude Include="src\RenderModule\RenderingObjects\CTexture.h" />
     <ClInclude Include="src\RenderModule\RenderingObjects\CTextureAtlas.h" />

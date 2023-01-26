@@ -13,9 +13,9 @@ enum class ERenderType : std::uint8_t
 
 class CMeshRenderEntity : public CEntity
 {
-    CWeakObjectPtr<class CShader        > m_shader = nullptr;
-    CWeakObjectPtr<class CTexture       > m_texture = nullptr;
-    CWeakObjectPtr<class CAbstractMesh  > m_mesh = nullptr;
+    CObjectPtr<class CShader        > m_shader = nullptr;
+    CObjectPtr<class CTexture       > m_texture = nullptr;
+    CObjectPtr<class CAbstractMesh  > m_mesh = nullptr;
     EngineMath::SVector4f m_color = {1.f, 1.f, 1.f, 1.f};
     std::int16_t m_priority = 0;
     bool m_wireframe = false;

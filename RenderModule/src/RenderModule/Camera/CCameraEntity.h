@@ -8,6 +8,7 @@ class CCameraEntity : public CEntity
 {
 	EngineMath::SMatrix4f m_projection;
 	CFrustumCollider m_collider;
+	CObjectPtr<class CCameraBuffer> m_cameraBuffer;
 	uint8_t m_isOrtho : 1;
 public:
 	CCameraEntity();
@@ -21,9 +22,10 @@ public:
 	void OnConstruct() override;
 	void OnDestroy() override;
 
-	const EngineMath::SMatrix4f&			getProjection() const	{ return m_projection;	}
-	const CFrustumCollider&		getCollider()			{ return m_collider;	}
-	bool						isOrtho()		const	{ return m_isOrtho;		}
+	const EngineMath::SMatrix4f&	getProjection() const	{ return m_projection;	}
+	const CFrustumCollider&			getCollider()			{ return m_collider;	}
+	bool							isOrtho()		const	{ return m_isOrtho;		}
+	CCameraBuffer*					GetCameraBuffer()		{ return m_cameraBuffer; }
 };
 
 #endif

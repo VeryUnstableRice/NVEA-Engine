@@ -3,13 +3,14 @@
 
 #include "CAbstractMeshBuffer.h"
 #include "Engine/Physics/CollisionShapes/CAABB.h"
+#include "Engine/CEngine.h"
 
 template<typename T, std::uint8_t size, GLenum type, std::uint16_t position>
 class CTemplateMeshBuffer : public CAbstractMeshBuffer
 {
-    std::uint8_t m_vertexAtribPointer;
+    std::uint8_t m_vertexAtribPointer{};
 protected:
-    void CustomDestroy();
+    void CustomDestroy() override;
 
     void EnableAttribArray() override;
 public:
@@ -25,7 +26,7 @@ void CTemplateMeshBuffer<T, size, type, position>::CustomDestroy()
 template <typename T, std::uint8_t size, GLenum type, std::uint16_t position>
 void CTemplateMeshBuffer<T, size, type, position>::EnableAttribArray()
 {
-    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(position);
 }
 
 template <typename T, std::uint8_t size, GLenum type, std::uint16_t position>
@@ -38,12 +39,15 @@ void CTemplateMeshBuffer<T, size, type, position>::Initialize(const std::vector<
 {
     Init();
     Bind();
-    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof data[0], data.data(), GL_STATIC_DRAW);
     EnableAttribArray();
-    glVertexAttribPointer(0, size, type, false, sizeof(T), 0);
+    glVertexAttribPointer(position, size, type, false, sizeof(T), NULL);
+    glBufferData(GL_ARRAY_BUFFER, data.size() * sizeof data[0], data.data(), GL_STATIC_DRAW);
 }
 
 template<std::uint16_t position>
 using CVector3MeshBuffer = CTemplateMeshBuffer<EngineMath::SVector3f, 3, GL_FLOAT, position>;
+
+template<std::uint16_t position>
+using CVector2MeshBuffer = CTemplateMeshBuffer<EngineMath::SVector2f, 2, GL_FLOAT, position>;
 
 #endif

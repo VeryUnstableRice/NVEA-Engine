@@ -22,7 +22,7 @@ static bool is_big_endian(void)
     return bint.c[0] == 1;
 }
 
-std::vector<char> CSound::LoadWAV(const std::string& filePath, int& channel, int& sample_rate, int& beats_per_second)
+std::vector<char> CSound::LoadWAV(const std::string& filePath, int& channel, int& sample_rate, ALsizei& beats_per_second)
 {
     auto ToInt = [](char* buffer, int len)
     {

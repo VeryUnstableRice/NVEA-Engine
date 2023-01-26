@@ -4,7 +4,7 @@
 
 #include "CTestGameInstance.h"
 #include "Engine/CEngine.h"
-#include "Engine/Object/Puppet/CPlayer.h"
+#include "Engine/Object/Entity/Puppet/CPlayer.h"
 #include "SoundModule/CSoundEntity.h"
 #include "InputManager/CInputManager.h"
 #include "CInputEngineModule.h"
@@ -86,7 +86,48 @@ void CDebugLevel::OnLevelChanged()
             {size, 0, size},
             {0, 0, size},
             {0, 0, 0}
-        });
+        },
+        {
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            {0, 0},
+            
+        }
+
+        );
     m_renderTestMesh = SpawnEntity<CMeshRenderEntity>();
     m_renderTestMesh->SetMesh(m_testMesh);
     m_renderTestMesh->SetShader(CTestGameInstance::Instance->DefaultShader);
