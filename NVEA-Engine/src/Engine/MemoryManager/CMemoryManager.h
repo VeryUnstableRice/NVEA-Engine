@@ -54,7 +54,7 @@ public:
     template<typename T = CObject>
     T* CreateObject(bool CallCtor)
     {
-        T* object = new T();
+        T* object = new T;
         if(CallCtor)
             object->OnConstruct();
         object->SetObjectName(typeid(T).name());

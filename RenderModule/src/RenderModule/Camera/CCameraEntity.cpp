@@ -53,10 +53,6 @@ EngineMath::SVector3f CCameraEntity::GetMiddle() const
 	return output;
 }
 
-CCameraEntity::~CCameraEntity()
-{
-}
-
 void CCameraEntity::OnConstruct()
 {
 	m_cameraBuffer = CreateComponent<CCameraBuffer>();
@@ -69,20 +65,38 @@ void CCameraEntity::OnDestroy()
 	CEntity::OnDestroy();
 }
 
-
-CCameraEntity::CCameraEntity() : m_collider(this)
+void CCameraEntity::Tick(double DeltaTime)
 {
-	m_isOrtho = 0;
+	CEntity::Tick(DeltaTime);
+	if(m_info.GetDirty())
+	{
+		UpdateMatrix();
+		m_info.SetDirty(false);
+	}
 }
 
 void CCameraEntity::MakePerspective(float fovy, float aspect, float near, float far)
 {
-	m_isOrtho = 0;
 	m_projection = glm::perspective(glm::radians(fovy), aspect, near, far);
 }
 
 void CCameraEntity::MakeOrtho(float left, float right, float bottom, float top, float zNear, float zFar)
 {
-	m_isOrtho = 1;
 	m_projection = glm::ortho(left, right, bottom, top, zNear, zFar);
+}
+
+void CCameraEntity::UpdateMatrix()
+{
+	if(m_info.Type == ECameraPerspective::PERSPECTIVE)
+		MakePerspective(m_info.GetFov(), 1.f,  m_info.GetNear(), m_info.GetFar());
+	else
+		MakeOrtho(m_info.GetLeft(), m_info.GetRight(), m_info.GetBottom(), m_info.GetTop(), m_info.GetNear(), m_info.GetFar());
+}
+
+CCameraEntity::CCameraEntity() : m_collider(this)
+{
+}
+
+CCameraEntity::~CCameraEntity()
+{
 }

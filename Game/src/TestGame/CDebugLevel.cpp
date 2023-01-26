@@ -131,6 +131,7 @@ void CDebugLevel::OnLevelChanged()
     m_renderTestMesh = SpawnEntity<CMeshRenderEntity>();
     m_renderTestMesh->SetMesh(m_testMesh);
     m_renderTestMesh->SetShader(CTestGameInstance::Instance->DefaultShader);
+    m_renderTestMesh->GetTransformComponent()->SetLocalTransform({{0.f, 0.f, -3}});
 
     m_soundEntity = SpawnEntity<CSoundEntity>();
     m_soundEntity->SetSound(CTestGameInstance::Instance->TestSound);

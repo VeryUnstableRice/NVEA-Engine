@@ -94,7 +94,7 @@ void CCameraBuffer::RenderObjects()
     CCameraEntity* Camera = dynamic_cast<CCameraEntity*>(GetOwner());
     if(!Camera) return;
     
-    EngineMath::SMatrix4f Projection = Camera->getProjection();
+    EngineMath::SMatrix4f Projection = Camera->GetProjection();
     EngineMath::SMatrix4f ViewMatrix = Camera->GetView(true);
 
     

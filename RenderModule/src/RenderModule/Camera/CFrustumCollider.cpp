@@ -3,10 +3,10 @@
 
 void CFrustumCollider::updatePlanes()
 {
-	glm::mat4 matrix = m_parent->getProjection() * m_parent->GetView(false);
+	glm::mat4 matrix = m_parent->GetProjection() * m_parent->GetView(false);
 	
 	//CAMERA HAS PERSPECTIVE 
-	if(!m_parent->isOrtho())
+	if(m_parent->GetCameraInfo().Type == ECameraPerspective::PERSPECTIVE)
 	{
 		//LEFT
 		m_planes[0].a = matrix[0][3] + matrix[0][0];
@@ -51,7 +51,7 @@ CFrustumCollider::CFrustumCollider(CCameraEntity* parent) : m_parent(parent)
 
 bool CFrustumCollider::sphereIntersection(glm::vec3 center, float radius) const
 {
-	if(m_parent->isOrtho()) return true;
+	if(m_parent->GetCameraInfo().Type == ECameraPerspective::PERSPECTIVE) return true;
 	//updatePlanes();
 	for (int i = 0; i < 6; ++i)
 	{

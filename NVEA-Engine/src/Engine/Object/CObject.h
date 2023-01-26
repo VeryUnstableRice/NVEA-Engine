@@ -22,7 +22,10 @@ public:
 
     bool IsPendingDestruction();
 
-    virtual void OnConstruct();
+    //don't mistake these with the ctor or dtor
+    //they are called before major deallocations or allocations
+    //so you can safely access everything without worrying of crashing
+    virtual void OnConstruct(); 
     virtual void OnDestroy();
 };
 

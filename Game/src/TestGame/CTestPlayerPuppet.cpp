@@ -10,6 +10,8 @@
 #include "CInputEngineModule.h"
 #include <RenderModule/CEngineRenderModule.h>
 
+#include "../../../NVEA-Engine/glad/glad.h"
+
 
 void CTestPlayerPuppet::ManageCamera(double DeltaTime)
 {
@@ -38,7 +40,9 @@ void CTestPlayerPuppet::OnConstruct()
     CPuppetEntity::OnConstruct();
     m_cameraEntity = GetLevel()->SpawnEntity<CCameraEntity>();
     m_cameraEntity->AttachTo(this);
-    m_cameraEntity->MakePerspective(90.f, 9.f/16.f, 0.1f, 1000.f);
+    //m_cameraEntity->MakePerspective(90.f, 1.f, 0.1f, 1000.f);
+
+
     CEngineRenderModule::Instance->GetCameraManager().SetCurrentCamera(m_cameraEntity);
     m_yaw = 0;
 

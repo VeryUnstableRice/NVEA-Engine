@@ -49,8 +49,11 @@ bool CMemoryManager::HasNonWeakPtr(ReferenceMap::iterator object) const
 CMemoryManager::VariableVector* CMemoryManager::GetVectorFor(CObject* Object)
 {
     if(!Object) return nullptr;
-    if(const ReferenceMap::iterator it = m_objects.find(Object); it != m_objects.end())
+    for(ReferenceMap::iterator it = m_objects.begin(); it != m_objects.end(); ++it)
+    {
+        if(it->first != Object) continue;
         return &it->second;
+    }
     return nullptr;
 }
 
